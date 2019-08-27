@@ -12,7 +12,7 @@ public class AParametres extends Activite {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         GLog.appel(this);
-        GLog.valeurs("Bonjour");
+        GLog.valeurs(this.getResources().getString(R.string.bonjour));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.page_parametres);
     }
