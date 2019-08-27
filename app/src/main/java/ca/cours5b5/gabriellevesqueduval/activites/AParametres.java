@@ -13,6 +13,7 @@ public class AParametres extends Activite {
     protected void onCreate(Bundle savedInstanceState) {
         GLog.appel(this);
         GLog.valeurs(this.getResources().getString(R.string.bonjour));
+        GLog.valeurs("Est-ce qu'on est en portrait?," + this.getResources().getBoolean(R.bool.est_paysage));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.page_parametres);
     }
