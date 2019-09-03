@@ -1,3 +1,8 @@
 <resources>
     <string name="bonjour">Bonjour!</string>
+    <string name="titreTaille">Taille préférée pour une nouvelle partie</string>
+    <string name="petiteTaille">Petite</string>
+    <string name="moyenneTaille">Moyenne</string>
+    <string name="grandeTaille">Grande</string>
+    <string name="switchPrecedente">Continuer partie précédente</string>
 </resources>

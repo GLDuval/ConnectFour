@@ -1,3 +1,8 @@
 <resources>
     <string name="bonjour">Hello!</string>
+    <string name="titreTaille">Prefered board size for new games</string>
+    <string name="petiteTaille">Small</string>
+    <string name="moyenneTaille">Medium</string>
+    <string name="grandeTaille">Large</string>
+    <string name="switchPrecedente">Resume previous game</string>
 </resources>
