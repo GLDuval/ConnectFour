@@ -5,4 +5,8 @@
     <string name="moyenneTaille">Medium</string>
     <string name="grandeTaille">Large</string>
     <string name="switchPrecedente">Resume previous game</string>
+    <string name="boutonConnexion">Login</string>
+    <string name="boutonJouer">Play</string>
+    <string name="boutonEnLigne">Play online</string>
+    <string name="boutonParametres">Settings</string>
 </resources>
