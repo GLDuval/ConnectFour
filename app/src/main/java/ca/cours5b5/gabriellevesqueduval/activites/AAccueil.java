@@ -1,7 +1,6 @@
 package ca.cours5b5.gabriellevesqueduval.activites;
 
 
-import android.os.Bundle;
 import android.widget.Button;
 
 import ca.cours5b5.gabriellevesqueduval.R;
@@ -15,7 +14,7 @@ public class AAccueil extends ActiviteAvecControles {
     private Button buttonParametres;
 
     @Override
-    protected int getContentViewId(){
+    protected int getLayoutId(){
         GLog.appel(this);
         return R.layout.page_accueil;
     }

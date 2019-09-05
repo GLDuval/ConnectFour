@@ -9,7 +9,7 @@ public class AParametres extends Activite {
 
 
     @Override
-    protected int getContentViewId() {
+    protected int getLayoutId() {
         GLog.appel(this);
         return R.layout.page_parametres;
     }

@@ -13,11 +13,11 @@ public abstract class Activite extends AppCompatActivity {
         GLog.appel(this);
         super.onCreate(savedInstanceState);
 
-        int contentViewId = getContentViewId();
+        int contentViewId = getLayoutId();
 
         setContentView(contentViewId);
 
     }
 
-    protected abstract int getContentViewId();
+    protected abstract int getLayoutId();
 }
