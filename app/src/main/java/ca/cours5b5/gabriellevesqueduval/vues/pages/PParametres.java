@@ -19,14 +19,17 @@ public class PParametres extends Page{
 
     public PParametres(Context context) {
         super(context);
+        GLog.appel(this);
     }
 
     public PParametres(Context context, AttributeSet attrs) {
         super(context, attrs);
+        GLog.appel(this);
     }
 
     public PParametres(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        GLog.appel(this);
     }
 
     @Override

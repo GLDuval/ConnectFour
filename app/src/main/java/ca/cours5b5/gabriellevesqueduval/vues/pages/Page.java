@@ -11,14 +11,17 @@ public abstract class Page extends ConstraintLayout {
 
     public Page(Context context) {
         super(context);
+        GLog.appel(this);
     }
 
     public Page(Context context, AttributeSet attrs) {
         super(context, attrs);
+        GLog.appel(this);
     }
 
     public Page(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        GLog.appel(this);
     }
 
     @Override
