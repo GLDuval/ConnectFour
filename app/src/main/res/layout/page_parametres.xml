@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ca.cours5b5.gabriellevesqueduval.vues.pages.PParametres xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -26,11 +26,12 @@
             android:text="@string/titreTaille"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-        <RadioGroup
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
-            android:background="@color/colorFond">
+            android:background="@color/colorFond"
+            android:orientation="vertical">
 
             <CheckBox
                 android:id="@+id/checkBoxPetite"
@@ -49,8 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/grandeTaille" />
-
-        </RadioGroup>
+        </LinearLayout>
 
         <Switch
             android:id="@+id/switchReprendre"
@@ -60,4 +60,4 @@
             android:text="@string/switchPrecedente" />
 
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ca.cours5b5.gabriellevesqueduval.vues.pages.PParametres>
