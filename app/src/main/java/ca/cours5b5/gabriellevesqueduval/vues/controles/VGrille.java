@@ -6,7 +6,14 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+
+import ca.cours5b5.gabriellevesqueduval.global.GLog;
+
 public class VGrille extends LinearLayout {
+
+    private ArrayList<VColonne> listeColonnes = new ArrayList<>();
+
     public VGrille(Context context) {
         super(context);
     }
@@ -21,5 +28,21 @@ public class VGrille extends LinearLayout {
 
     public VGrille(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+        GLog.appel(this);
+
+
+    }
+
+    public void creerGrille(int hauteur, int largeur){
+        GLog.appel(this);
+        this.setOrientation(LinearLayout.HORIZONTAL);
+
+        for(int col=0; col<largeur; col++){
+            VColonne colonne = new VColonne(this.getContext());
+            colonne.creerColonne(col, hauteur);
+            this.addView(colonne);
+            listeColonnes.add(colonne);
+            }
+
     }
 }

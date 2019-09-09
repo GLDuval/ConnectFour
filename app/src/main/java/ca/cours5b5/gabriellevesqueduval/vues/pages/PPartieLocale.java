@@ -16,8 +16,4 @@ public class PPartieLocale extends PPartie {
         super(context, attrs, defStyleAttr);
     }
 
-    @Override
-    protected void recupererControles() {
-
-    }
 }

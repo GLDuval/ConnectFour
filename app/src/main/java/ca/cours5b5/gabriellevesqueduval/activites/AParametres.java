@@ -1,6 +1,5 @@
 package ca.cours5b5.gabriellevesqueduval.activites;
 
-import android.os.Bundle;
 
 import ca.cours5b5.gabriellevesqueduval.R;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
