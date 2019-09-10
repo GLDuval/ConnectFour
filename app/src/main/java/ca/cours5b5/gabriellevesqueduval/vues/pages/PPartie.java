@@ -2,6 +2,8 @@ package ca.cours5b5.gabriellevesqueduval.vues.pages;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.widget.TextView;
+
 import java.util.Random;
 
 import ca.cours5b5.gabriellevesqueduval.R;
@@ -11,7 +13,9 @@ import ca.cours5b5.gabriellevesqueduval.vues.controles.VGrille;
 
 public abstract class PPartie extends Page {
 
-    VGrille grille;
+    private VGrille grille;
+    private TextView textViewNom1;
+    private TextView textViewNom2;
 
     public PPartie(Context context) {
         super(context);
@@ -28,10 +32,16 @@ public abstract class PPartie extends Page {
     @Override
     protected void recupererControles(){
         GLog.appel(this);
-        //Random random = new Random();
+
         grille = this.findViewById(R.id.grille);
-        int largeur = 7;
-        int hauteur = 7;
+        textViewNom1 = this.findViewById(R.id.textViewNom1);
+        textViewNom2 = this.findViewById(R.id.textViewNom2);
+
+        Random random = new Random();
+
+        int largeur = random.nextInt(5) + 2;
+        int hauteur = random.nextInt(4) + 2;
+
         grille.creerGrille(hauteur, largeur);
 
 

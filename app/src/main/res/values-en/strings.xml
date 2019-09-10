@@ -9,4 +9,6 @@
     <string name="boutonJouer">Play</string>
     <string name="boutonEnLigne">Play online</string>
     <string name="boutonParametres">Settings</string>
+    <string name="nom1">Heather</string>
+    <string name="nom2">Bob</string>
 </resources>

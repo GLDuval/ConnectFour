@@ -2,8 +2,7 @@ package ca.cours5b5.gabriellevesqueduval.vues.controles;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
+
 
 import androidx.appcompat.widget.AppCompatButton;
 
@@ -28,6 +27,7 @@ public class VCase extends AppCompatButton {
     public VCase(Context context, int indiceCol, int indiceLigne){
         super(context);
         GLog.appel(this);
-        this.setText(indiceCol + ", " + indiceLigne);
+
+        this.setText(indiceLigne + ", " + indiceCol);
     }
 }

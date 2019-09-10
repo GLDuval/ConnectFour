@@ -23,4 +23,11 @@ public class VEntete extends AppCompatButton {
         super(context, attrs, defStyleAttr);
         GLog.appel(this);
     }
+
+    public VEntete(Context context, int colCourante){
+        super(context);
+        GLog.appel(this);
+
+        this.setText(colCourante + "\n↓");
+    }
 }

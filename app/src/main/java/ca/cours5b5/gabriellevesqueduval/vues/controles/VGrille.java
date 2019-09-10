@@ -2,6 +2,7 @@ package ca.cours5b5.gabriellevesqueduval.vues.controles;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
@@ -35,12 +36,19 @@ public class VGrille extends LinearLayout {
 
     public void creerGrille(int hauteur, int largeur){
         GLog.appel(this);
+
         this.setOrientation(LinearLayout.HORIZONTAL);
 
         for(int col=0; col<largeur; col++){
+
             VColonne colonne = new VColonne(this.getContext());
+
             colonne.creerColonne(col, hauteur);
-            this.addView(colonne);
+
+            LayoutParams layoutParams = new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1);
+
+            this.addView(colonne, layoutParams);
+
             listeColonnes.add(colonne);
             }
 

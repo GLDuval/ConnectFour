@@ -9,4 +9,6 @@
     <string name="boutonJouer">Jouer</string>
     <string name="boutonEnLigne">Jouer en ligne</string>
     <string name="boutonParametres">Paramètres</string>
+    <string name="nom1">Alice</string>
+    <string name="nom2">Robert</string>
 </resources>
