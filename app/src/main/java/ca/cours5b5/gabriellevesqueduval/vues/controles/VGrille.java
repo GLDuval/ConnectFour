@@ -17,14 +17,17 @@ public class VGrille extends LinearLayout {
 
     public VGrille(Context context) {
         super(context);
+        GLog.appel(this);
     }
 
     public VGrille(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        GLog.appel(this);
     }
 
     public VGrille(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        GLog.appel(this);
     }
 
     public VGrille(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {

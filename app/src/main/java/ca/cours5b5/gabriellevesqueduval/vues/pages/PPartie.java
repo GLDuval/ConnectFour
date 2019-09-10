@@ -19,14 +19,17 @@ public abstract class PPartie extends Page {
 
     public PPartie(Context context) {
         super(context);
+        GLog.appel(this);
     }
 
     public PPartie(Context context, AttributeSet attrs) {
         super(context, attrs);
+        GLog.appel(this);
     }
 
     public PPartie(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        GLog.appel(this);
     }
 
     @Override

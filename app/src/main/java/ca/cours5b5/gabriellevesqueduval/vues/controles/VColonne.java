@@ -55,7 +55,7 @@ public class VColonne extends LinearLayout {
 
         for(int i=0; i<cases.length; i++){
 
-            cases[i] = new VCase(this.getContext(), colCourante, cases.length-i);
+            cases[i] = new VCase(this.getContext(), colCourante, cases.length-1-i);
 
             this.addView(cases[i], layoutParams);
         }
