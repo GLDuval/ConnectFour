@@ -1,0 +1,25 @@
+Dans quelles circonstances est-ce qu'une activité est crée?
+Une activité est crée lorsqu'elle est lancé par l'utilisateur et chargé par l'application. Elle est aussi crée lorsqu'elle est réactivé par l'usager suite à sa destruction par le système.
+
+Dans quelles circonstances est-ce qu'une activité est interrompue (onPause)?
+Une activité est interrompue lorsque le téléphone est mis en veille. Aussi, le onPause est appelé lorsque l'utilisateur appuie sur le bouton home (●) ou sur le bouton "Overview" (■).
+
+Dans quelles circonstances est-ce qu'une activité est réactivée (onResume)?
+Une activité est réactivée lorsque le système crée la vue. Ele est aussi réactivée lorsqu'une vue est ouverte à nouveau après avoir été mis en pause.
+
+Dans quelles circonstances est-ce qu'une activité est détruite?
+Une activité est détruite lorsque l'usager appuie sur le bouton de retour (◀). Elle est aussi détruite lorsque l'application est fermé cela peut ce produire par exemple en fermant l'application à partir du bouton "Overview" (■). De plus, elle est détruite lors d'un changement de contexte.
+
+Dans quelles circonstances est-ce que l'état est sauvegardé?
+L'état est sauvegardé lorsque l'application entre en état de pause.
+
+Dans quelles circonstances est-ce que l'état est restauré?
+L'état est restauré lorsqu'une activité est réaffiché après avoir été détruite.
+
+Dans quelles circonstances est-ce que le choix de taille est conservé? perdu?
+Perdu:
+Lorsque l'activité paramètres est détruite par l'usager (à partir des boutons (■) ou (◀))
+
+Conservé:
+Lorsque l'activité est détruite par le système Android.
+Lorsque l'activité est en pause et réactivée par la suite.
