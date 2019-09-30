@@ -7,9 +7,11 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import ca.cours5b5.gabriellevesqueduval.R;
+import ca.cours5b5.gabriellevesqueduval.donnees.DParametres;
+import ca.cours5b5.gabriellevesqueduval.global.GConstantes;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
 
-public class PParametres extends Page{
+public class PParametres extends PageAvecDonnees<DParametres> {
 
     private TextView textViewTaille;
     private CheckBox checkBoxPetite;
@@ -33,6 +35,18 @@ public class PParametres extends Page{
     }
 
     @Override
+    public void creerAffichage(DParametres donnees) {
+        GLog.appel(this);
+        mettreDonneesParDefaut(donnees);
+    }
+
+    @Override
+    public void rafraichirAffichage(DParametres donnees) {
+        GLog.appel(this);
+        mettreDonneesParDefaut(donnees);
+    }
+
+    @Override
     protected void recupererControles() {
 
         GLog.appel(this);
@@ -42,5 +56,25 @@ public class PParametres extends Page{
         checkBoxGrande = this.findViewById(R.id.checkBoxGrande);
         switchReprendre = this.findViewById(R.id.switchReprendre);
         GLog.valeurs(textViewTaille, checkBoxPetite, checkBoxMoyenne, checkBoxGrande, switchReprendre);
+    }
+
+    private void mettreDonneesParDefaut(DParametres donnees){
+        GLog.appel(this);
+        donnees.setTaille(GConstantes.taille);
+        donnees.setContinuer(GConstantes.continuer);
+
+        switch (donnees.getTaille()){
+            case "petite":
+                checkBoxPetite.setChecked(true);
+                break;
+            case "moyenne":
+                checkBoxMoyenne.setChecked(true);
+                break;
+            case "grande":
+                checkBoxGrande.setChecked(true);
+
+        }
+
+        switchReprendre.setChecked(donnees.isContinuer());
     }
 }
