@@ -2,16 +2,20 @@ package ca.cours5b5.gabriellevesqueduval.vues.pages;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import ca.cours5b5.gabriellevesqueduval.R;
 import ca.cours5b5.gabriellevesqueduval.donnees.DParametres;
+import ca.cours5b5.gabriellevesqueduval.enumerations.ETailleGrille;
 import ca.cours5b5.gabriellevesqueduval.global.GConstantes;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
+import ca.cours5b5.gabriellevesqueduval.modeles.MParametres;
 
-public class PParametres extends PageAvecDonnees<DParametres> {
+public class PParametres extends PageAvecModeles<DParametres, MParametres> {
 
     private TextView textViewTaille;
     private CheckBox checkBoxPetite;
@@ -37,14 +41,15 @@ public class PParametres extends PageAvecDonnees<DParametres> {
     @Override
     public void creerAffichage(DParametres donnees) {
         GLog.appel(this);
-        mettreDonneesParDefaut(donnees);
+        afficherLesDonnees(donnees);
     }
 
     @Override
     public void rafraichirAffichage(DParametres donnees) {
         GLog.appel(this);
-        mettreDonneesParDefaut(donnees);
+        afficherLesDonnees(donnees);
     }
+
 
     @Override
     protected void recupererControles() {
@@ -58,7 +63,20 @@ public class PParametres extends PageAvecDonnees<DParametres> {
         GLog.valeurs(textViewTaille, checkBoxPetite, checkBoxMoyenne, checkBoxGrande, switchReprendre);
     }
 
-    private void mettreDonneesParDefaut(DParametres donnees){
+    @Override
+    public void installerCapteurs(final MParametres modele) {
+
+        checkBoxGrande.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+    }
+
+
+    private void afficherLesDonnees(DParametres donnees){
         GLog.appel(this);
         donnees.setTaille(GConstantes.taille);
         donnees.setContinuer(GConstantes.continuer);
@@ -66,12 +84,19 @@ public class PParametres extends PageAvecDonnees<DParametres> {
         switch (donnees.getTaille()){
             case "petite":
                 checkBoxPetite.setChecked(true);
+                checkBoxMoyenne.setChecked(false);
+                checkBoxGrande.setChecked(false);
                 break;
             case "moyenne":
+                checkBoxPetite.setChecked(false);
                 checkBoxMoyenne.setChecked(true);
+                checkBoxGrande.setChecked(false);
                 break;
             case "grande":
+                checkBoxPetite.setChecked(false);
+                checkBoxMoyenne.setChecked(false);
                 checkBoxGrande.setChecked(true);
+                break;
 
         }
 

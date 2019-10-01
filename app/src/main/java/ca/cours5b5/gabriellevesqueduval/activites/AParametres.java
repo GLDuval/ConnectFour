@@ -4,9 +4,10 @@ package ca.cours5b5.gabriellevesqueduval.activites;
 import ca.cours5b5.gabriellevesqueduval.R;
 import ca.cours5b5.gabriellevesqueduval.donnees.DParametres;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
+import ca.cours5b5.gabriellevesqueduval.modeles.MParametres;
 import ca.cours5b5.gabriellevesqueduval.vues.pages.PParametres;
 
-public class AParametres extends ActiviteAvecDonnees<DParametres, PParametres> {
+public class AParametres extends ActiviteAvecModeles<DParametres, MParametres, PParametres> {
 
 
     @Override
@@ -22,9 +23,14 @@ public class AParametres extends ActiviteAvecDonnees<DParametres, PParametres> {
     }
 
     @Override
-    protected DParametres creerDonnees() {
-        GLog.appel(this);
-        DParametres parametres = new DParametres();
-        return parametres;
+    protected Class<DParametres> getClassDonnees() {
+        return DParametres.class;
     }
+
+    @Override
+    protected void creerModele(DParametres donnees, PParametres page) {
+
+        new MParametres(donnees, page);
+    }
+
 }
