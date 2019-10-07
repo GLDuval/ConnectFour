@@ -4,14 +4,12 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import ca.cours5b5.gabriellevesqueduval.R;
 import ca.cours5b5.gabriellevesqueduval.donnees.DParametres;
 import ca.cours5b5.gabriellevesqueduval.enumerations.ETailleGrille;
-import ca.cours5b5.gabriellevesqueduval.global.GConstantes;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
 import ca.cours5b5.gabriellevesqueduval.modeles.MParametres;
 
@@ -69,7 +67,31 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
         checkBoxGrande.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                modele.changementTaille(ETailleGrille.grande);
+                checkBoxPetite.setChecked(false);
+                checkBoxMoyenne.setChecked(false);
+            }
+        });
+        checkBoxMoyenne.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                modele.changementTaille(ETailleGrille.moyenne);
+                checkBoxPetite.setChecked(false);
+                checkBoxGrande.setChecked(false);
+            }
+        });
+        checkBoxPetite.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                modele.changementTaille(ETailleGrille.petite);
+                checkBoxMoyenne.setChecked(false);
+                checkBoxGrande.setChecked(false);
+            }
+        });
+        switchReprendre.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                modele.changementContinuer(switchReprendre.isChecked());
             }
         });
 
@@ -78,23 +100,17 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
 
     private void afficherLesDonnees(DParametres donnees){
         GLog.appel(this);
-        donnees.setTaille(GConstantes.taille);
-        donnees.setContinuer(GConstantes.continuer);
+        donnees.setTaille(donnees.getTaille());
+        donnees.setContinuer(donnees.isContinuer());
 
         switch (donnees.getTaille()){
-            case "petite":
+            case petite:
                 checkBoxPetite.setChecked(true);
-                checkBoxMoyenne.setChecked(false);
-                checkBoxGrande.setChecked(false);
                 break;
-            case "moyenne":
-                checkBoxPetite.setChecked(false);
+            case moyenne:
                 checkBoxMoyenne.setChecked(true);
-                checkBoxGrande.setChecked(false);
                 break;
-            case "grande":
-                checkBoxPetite.setChecked(false);
-                checkBoxMoyenne.setChecked(false);
+            case grande:
                 checkBoxGrande.setChecked(true);
                 break;
 

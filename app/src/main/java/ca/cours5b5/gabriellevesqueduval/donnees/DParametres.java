@@ -1,18 +1,20 @@
 package ca.cours5b5.gabriellevesqueduval.donnees;
 
+import ca.cours5b5.gabriellevesqueduval.enumerations.ETailleGrille;
+import ca.cours5b5.gabriellevesqueduval.global.GConstantes;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
 
 public class DParametres extends Donnees{
 
-    private String taille;
-    private boolean continuer;
+    private ETailleGrille taille = GConstantes.taille;
+    private boolean continuer = GConstantes.continuer;
 
     public DParametres(){
         GLog.appel(this);
 
     }
 
-    public void setTaille(String taille){
+    public void setTaille(ETailleGrille taille){
         GLog.appel(this);
         this.taille = taille;
     }
@@ -22,7 +24,7 @@ public class DParametres extends Donnees{
         this.continuer = continuer;
     }
 
-    public String getTaille(){
+    public ETailleGrille getTaille(){
         GLog.appel(this);
         return taille;
     }
