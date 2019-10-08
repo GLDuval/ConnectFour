@@ -1,4 +1,5 @@
 <resources>
+    <string name="app_name">GabrielLevesqueDuval</string>
     <string name="bonjour">Hello!</string>
     <string name="titreTaille">Prefered board size for new games</string>
     <string name="petiteTaille">Small</string>
