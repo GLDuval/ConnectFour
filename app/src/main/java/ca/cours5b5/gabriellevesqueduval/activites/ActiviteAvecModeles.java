@@ -2,6 +2,8 @@ package ca.cours5b5.gabriellevesqueduval.activites;
 
 import android.os.Bundle;
 
+import java.io.File;
+
 import ca.cours5b5.gabriellevesqueduval.donnees.Donnees;
 import ca.cours5b5.gabriellevesqueduval.donnees.EntrepotDeDonnees;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
@@ -58,14 +60,27 @@ public abstract class ActiviteAvecModeles<D extends Donnees, M extends Modele, P
         page.rafraichirAffichage(donnees);
     }
 
+    private File repertoireDonnees(){
+        GLog.appel(this);
+        return this.getFilesDir();
+    }
+
+    @Override
+    protected void onPause(){
+        GLog.appel(this);
+        super.onPause();
+        EntrepotDeDonnees.sauvegarderSurDisque(donnees, repertoireDonnees());
+    }
+
     private D recupererDonnees(Bundle etat){
-        return EntrepotDeDonnees.obtenirDonnees(getClassDonnees(), etat);
+        GLog.appel(this);
+        return EntrepotDeDonnees.obtenirDonnees(getClassDonnees(), etat, repertoireDonnees());
     }
 
     protected abstract int getIdPage();
 
     protected abstract Class<D> getClassDonnees();
 
-    protected abstract void creerModele(D donnees, P page);
+    protected abstract M creerModele(D donnees, P page);
 
 }

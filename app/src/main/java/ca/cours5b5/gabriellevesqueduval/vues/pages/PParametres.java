@@ -64,6 +64,8 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
     @Override
     public void installerCapteurs(final MParametres modele) {
 
+        GLog.appel(this);
+
         checkBoxGrande.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {

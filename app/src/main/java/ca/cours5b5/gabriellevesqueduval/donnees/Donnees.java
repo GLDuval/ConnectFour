@@ -1,4 +1,6 @@
 package ca.cours5b5.gabriellevesqueduval.donnees;
 
-public abstract class Donnees {
+import java.io.Serializable;
+
+public abstract class Donnees implements Serializable {
 }

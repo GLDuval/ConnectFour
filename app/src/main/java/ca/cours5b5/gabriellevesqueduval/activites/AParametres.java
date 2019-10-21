@@ -24,13 +24,15 @@ public class AParametres extends ActiviteAvecModeles<DParametres, MParametres, P
 
     @Override
     protected Class<DParametres> getClassDonnees() {
+        GLog.appel(this);
         return DParametres.class;
     }
 
     @Override
-    protected void creerModele(DParametres donnees, PParametres page) {
+    protected MParametres creerModele(DParametres donnees, PParametres page) {
 
-        new MParametres(donnees, page);
+        GLog.appel(this);
+        return new MParametres(donnees, page);
     }
 
 }
