@@ -7,11 +7,13 @@ import android.widget.TextView;
 import java.util.Random;
 
 import ca.cours5b5.gabriellevesqueduval.R;
+import ca.cours5b5.gabriellevesqueduval.donnees.partie.DPartie;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
+import ca.cours5b5.gabriellevesqueduval.modeles.MPartie;
 import ca.cours5b5.gabriellevesqueduval.vues.controles.VGrille;
 
 
-public abstract class PPartie extends Page {
+public abstract class PPartie extends PageAvecModeles<DPartie, MPartie> {
 
     private VGrille grille;
     private TextView textViewNom1;
