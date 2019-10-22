@@ -15,17 +15,20 @@ public class APartieLocale extends ActiviteAvecModeles <DPartieLocale, MPartieLo
 
     @Override
     protected int getIdPage() {
-        return 0;
+        GLog.appel(this);
+        return R.id.pPartieLocale;
     }
 
     @Override
     protected Class<DPartieLocale> getClassDonnees() {
-        return null;
+        GLog.appel(this);
+        return DPartieLocale.class;
     }
 
     @Override
     protected MPartieLocale creerModele(DPartieLocale donnees, PPartieLocale page) {
-        return null;
+        GLog.appel(this);
+        return new MPartieLocale(donnees, page);
     }
 
 }

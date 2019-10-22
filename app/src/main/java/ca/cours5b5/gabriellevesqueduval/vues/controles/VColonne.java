@@ -14,6 +14,7 @@ public class VColonne extends LinearLayout {
 
     private VEntete enTete;
     private VCase[] cases;
+    private int indice;
 
     public VColonne(Context context) {
         super(context);
@@ -37,7 +38,7 @@ public class VColonne extends LinearLayout {
 
     public void creerColonne(int colCourante, int hauteur){
         GLog.appel(this);
-
+        this.indice = colCourante;
         this.setOrientation(LinearLayout.VERTICAL);
 
         ajouterEnTete(colCourante);
@@ -73,5 +74,15 @@ public class VColonne extends LinearLayout {
         this.addView(enTete, layoutParams);
     }
 
+    public VCase[] getCases() {
+        return cases;
+    }
 
+    public VEntete getEnTete() {
+        return enTete;
+    }
+
+    public int getIndice() {
+        return indice;
+    }
 }

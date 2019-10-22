@@ -56,4 +56,8 @@ public class VGrille extends LinearLayout {
             }
 
     }
+
+    public ArrayList<VColonne> getListeColonnes() {
+        return listeColonnes;
+    }
 }

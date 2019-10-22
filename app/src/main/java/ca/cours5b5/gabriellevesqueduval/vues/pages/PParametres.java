@@ -69,6 +69,7 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
         checkBoxGrande.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                GLog.appel(this);
                 modele.changementTaille(ETailleGrille.grande);
                 checkBoxPetite.setChecked(false);
                 checkBoxMoyenne.setChecked(false);
@@ -77,6 +78,7 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
         checkBoxMoyenne.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                GLog.appel(this);
                 modele.changementTaille(ETailleGrille.moyenne);
                 checkBoxPetite.setChecked(false);
                 checkBoxGrande.setChecked(false);
@@ -85,6 +87,7 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
         checkBoxPetite.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                GLog.appel(this);
                 modele.changementTaille(ETailleGrille.petite);
                 checkBoxMoyenne.setChecked(false);
                 checkBoxGrande.setChecked(false);
@@ -93,6 +96,7 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
         switchReprendre.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                GLog.appel(this);
                 modele.changementContinuer(switchReprendre.isChecked());
             }
         });
@@ -102,8 +106,6 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
 
     private void afficherLesDonnees(DParametres donnees){
         GLog.appel(this);
-        donnees.setTaille(donnees.getTaille());
-        donnees.setContinuer(donnees.isContinuer());
 
         switch (donnees.getTaille()){
             case petite:

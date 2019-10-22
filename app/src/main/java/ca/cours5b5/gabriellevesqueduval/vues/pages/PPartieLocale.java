@@ -2,10 +2,7 @@ package ca.cours5b5.gabriellevesqueduval.vues.pages;
 
 import android.content.Context;
 import android.util.AttributeSet;
-
-import ca.cours5b5.gabriellevesqueduval.donnees.partie.DPartie;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
-import ca.cours5b5.gabriellevesqueduval.modeles.MPartie;
 
 public class PPartieLocale extends PPartie {
     public PPartieLocale(Context context) {
@@ -23,19 +20,5 @@ public class PPartieLocale extends PPartie {
         GLog.appel(this);
     }
 
-    @Override
-    public void creerAffichage(DPartie donnees) {
-
-    }
-
-    @Override
-    public void rafraichirAffichage(DPartie donnees) {
-
-    }
-
-    @Override
-    public void installerCapteurs(MPartie modele) {
-
-    }
 
 }

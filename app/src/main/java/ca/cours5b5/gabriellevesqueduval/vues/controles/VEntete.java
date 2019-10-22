@@ -9,6 +9,8 @@ import ca.cours5b5.gabriellevesqueduval.global.GLog;
 
 
 public class VEntete extends AppCompatButton {
+
+
     public VEntete(Context context) {
         super(context);
         GLog.appel(this);
@@ -27,7 +29,7 @@ public class VEntete extends AppCompatButton {
     public VEntete(Context context, int colCourante){
         super(context);
         GLog.appel(this);
-
         this.setText(colCourante + "\n↓");
     }
+
 }

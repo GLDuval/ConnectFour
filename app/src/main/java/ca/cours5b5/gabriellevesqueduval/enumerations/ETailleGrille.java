@@ -6,11 +6,11 @@ public enum ETailleGrille {
     public int getHauteur(){
         int hauteur = 0;
         if(this == petite){
-            hauteur = 2;
-        }else if(this == moyenne){
             hauteur = 4;
-        }else if (this == grande){
+        }else if(this == moyenne){
             hauteur = 6;
+        }else if (this == grande){
+            hauteur = 8;
         }
         return hauteur;
     }
@@ -18,11 +18,11 @@ public enum ETailleGrille {
     public int getLargeur(){
         int largeur = 0;
         if(this == petite){
-            largeur = 2;
-        }else if(this == moyenne){
             largeur = 4;
-        }else if (this == grande){
+        }else if(this == moyenne){
             largeur = 6;
+        }else if (this == grande){
+            largeur = 8;
         }
         return largeur;
     }
