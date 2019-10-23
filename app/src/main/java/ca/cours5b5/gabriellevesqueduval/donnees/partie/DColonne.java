@@ -13,9 +13,11 @@ public class DColonne extends Donnees {
         GLog.appel(this);
     }
 
-    public DColonne(ArrayList<DCase> cases){
+    public DColonne(int hauteur){
         GLog.appel(this);
-        this.cases = cases;
+        for(int i=0; i<hauteur; i++){
+            cases.add(new DCase());
+        }
     }
 
     public ArrayList<DCase> getCases(){
@@ -28,10 +30,4 @@ public class DColonne extends Donnees {
         this.cases = cases;
     }
 
-    public void creerColonne(int hauteur){
-
-        for(int i=0; i<hauteur; i++){
-            cases.add(new DCase());
-        }
-    }
 }

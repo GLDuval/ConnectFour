@@ -1,7 +1,8 @@
 package ca.cours5b5.gabriellevesqueduval.modeles;
 
-import ca.cours5b5.gabriellevesqueduval.donnees.partie.DColonne;
-import ca.cours5b5.gabriellevesqueduval.donnees.partie.DGrille;
+import java.util.ArrayList;
+
+import ca.cours5b5.gabriellevesqueduval.donnees.partie.DCase;
 import ca.cours5b5.gabriellevesqueduval.donnees.partie.DPartie;
 import ca.cours5b5.gabriellevesqueduval.enumerations.ECouleur;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
@@ -15,36 +16,22 @@ public abstract class MPartie extends Modele<DPartie, PPartie> {
         GLog.appel(this);
     }
 
-    public void jetonJoue(ECouleur couleur, int indiceCol, int indiceCase){
+    public void jetonJoue(int indiceCol){
         GLog.appel(this);
-        donnees.setCouleur(couleur);
-        ECouleur couleurCase = couleur.equals(ECouleur.bleu) ? ECouleur.rouge : ECouleur.bleu;
-        changerCouleurCase(couleurCase, indiceCol, indiceCase);
+        changerCouleurCase(indiceCol);
+        page.rafraichirAffichage(donnees);
 
     }
 
-    public void changerCouleurCase(ECouleur couleurCase,int indiceCol, int indiceCase){
-        donnees.getGrille().getColonnes().get(indiceCol).getCases().get(indiceCase).setCouleur(couleurCase);
-    }
-
-    public void initialiserGrille(int hauteur, int largeur){
-
-        if(donnees.getGrille() == null){
-            DGrille grille = new DGrille();
-
-            for(int i=0; i<largeur; i++){
-                DColonne colonne = new DColonne();
-                colonne.creerColonne(hauteur);
-                grille.getColonnes().add(colonne);
+    public void changerCouleurCase(int indiceCol){
+        ArrayList<DCase> cases = donnees.getGrille().getColonnes().get(indiceCol).getCases();
+        for(int i=cases.size()-1; i>-1; i--){
+            if(cases.get(i).getCouleur() == ECouleur.gris){
+                cases.get(i).setCouleur(donnees.getCouleur());
+                donnees.setCouleur(cases.get(i).getCouleur());
+                break;
             }
-
-            donnees.setGrille(grille);
         }
-
-
-
-
-
 
     }
 

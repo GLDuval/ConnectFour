@@ -1,6 +1,7 @@
 package ca.cours5b5.gabriellevesqueduval.vues.pages;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -31,9 +32,6 @@ public abstract class PPartie extends PageAvecModeles<DPartie, MPartie> {
     private VGrille grille;
     private TextView textViewNom1;
     private TextView textViewNom2;
-    private int hauteur;
-    private int largeur;
-    public ECouleur couleur = ECouleur.bleu;
 
     public PPartie(Context context) {
         super(context);
@@ -59,17 +57,12 @@ public abstract class PPartie extends PageAvecModeles<DPartie, MPartie> {
         textViewNom2 = this.findViewById(R.id.textViewNom2);
 
 
-        largeur = ETailleGrille.moyenne.getLargeur();
-        hauteur = ETailleGrille.moyenne.getHauteur();
-
-        grille.creerGrille(hauteur, largeur);
-
-
     }
 
     @Override
     public void creerAffichage(DPartie donnees) {
         GLog.appel(this);
+        grille.creerGrille(donnees.getTaille().getHauteur(), donnees.getTaille().getLargeur());
         afficherLesDonnees(donnees);
     }
 
@@ -82,21 +75,15 @@ public abstract class PPartie extends PageAvecModeles<DPartie, MPartie> {
     @Override
     public void installerCapteurs(final MPartie modele) {
         GLog.appel(this);
-        modele.initialiserGrille(hauteur, largeur);
         for (final VColonne colonne : grille.getListeColonnes()) {
+
             VEntete enTete = colonne.getEnTete();
             enTete.setOnClickListener(new OnClickListener() {
-                int indiceCase = largeur-1;
                 @Override
                 public void onClick(View view) {
                     GLog.appel(this);
 
-                    couleur = ajouterCouleur(colonne.getCases(), couleur);
-
-                    modele.jetonJoue(couleur, colonne.getIndice(), indiceCase);
-                    if(indiceCase>0){
-                        indiceCase--;
-                    }
+                    modele.jetonJoue(colonne.getIndice());
 
                 }
             });
@@ -104,43 +91,27 @@ public abstract class PPartie extends PageAvecModeles<DPartie, MPartie> {
 
     }
 
-    private ECouleur ajouterCouleur(VCase[] cases, ECouleur couleur){
+    private void afficherLesDonnees(DPartie donnees){
         GLog.appel(this);
-        for(int i=cases.length-1; i>-1; i--){
-            ColorDrawable couleurDraw = (ColorDrawable)cases[i].getBackground();
-            if(couleurDraw.getColor() == ContextCompat.getColor(getContext(), R.color.colorFond)){
+
+        int backgroundColor;
+        ArrayList<DColonne> colonnes = donnees.getGrille().getColonnes();
+        for (int i=0; i<colonnes.size(); i++) {
+            ArrayList<DCase> cases = colonnes.get(i).getCases();
+            for(int j=0; j<cases.size(); j++){
+                ECouleur couleur = cases.get(j).getCouleur();
                 if(couleur == ECouleur.bleu){
-                    cases[i].setBackgroundColor(ContextCompat.getColor(getContext(), R.color.bleu));
-                    couleur = ECouleur.rouge;
+                    backgroundColor = ContextCompat.getColor(getContext(), R.color.bleu);
+                }else if(couleur == ECouleur.rouge){
+                    backgroundColor = ContextCompat.getColor(getContext(), R.color.rouge);
                 }else{
-                    cases[i].setBackgroundColor(ContextCompat.getColor(getContext(), R.color.rouge));
-                    couleur = ECouleur.bleu;
+                    backgroundColor = ContextCompat.getColor(getContext(), R.color.colorFond);
                 }
-                break;
+                grille.getListeColonnes().get(i).getCases()[j].setBackgroundColor(backgroundColor);
+
             }
         }
-        return couleur;
 
-    }
-
-    public void afficherLesDonnees(DPartie donnees){
-        GLog.appel(this);
-        if(donnees.getGrille() != null){
-            ArrayList<DColonne> colonnes = donnees.getGrille().getColonnes();
-            for (int i=0; i<colonnes.size(); i++) {
-                ArrayList<DCase> cases= colonnes.get(i).getCases();
-                for(int j=0; j<cases.size(); j++){
-                    couleur = cases.get(j).getCouleur();
-                    if(couleur == ECouleur.bleu){
-                        grille.getListeColonnes().get(i).getCases()[j].setBackgroundColor(ContextCompat.getColor(getContext(), R.color.bleu));
-                    }else if(couleur == ECouleur.rouge){
-                        grille.getListeColonnes().get(i).getCases()[j].setBackgroundColor(ContextCompat.getColor(getContext(), R.color.rouge));
-                    }else{
-                        grille.getListeColonnes().get(i).getCases()[j].setBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorFond));
-                    }
-                }
-            }
-        }
 
 
     }

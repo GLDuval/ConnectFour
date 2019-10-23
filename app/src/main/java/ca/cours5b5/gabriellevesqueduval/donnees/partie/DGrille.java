@@ -14,9 +14,12 @@ public class DGrille extends Donnees {
 
     }
 
-    public DGrille(ArrayList<DColonne> colonnes){
+    public DGrille(int hauteur, int largeur){
         GLog.appel(this);
-        this.colonnes = colonnes;
+        for(int i=0; i<largeur; i++){
+            DColonne colonne = new DColonne(hauteur);
+            colonnes.add(colonne);
+        }
     }
 
     public ArrayList<DColonne> getColonnes(){

@@ -8,19 +8,13 @@ import ca.cours5b5.gabriellevesqueduval.global.GLog;
 public abstract class DPartie extends Donnees {
 
     private DGrille grille;
-    private ETailleGrille taille;
-    private ECouleur couleur;
+    private ETailleGrille taille = ETailleGrille.grande;
+    private ECouleur couleur = ECouleur.bleu;
 
     public DPartie(){
         GLog.appel(this);
+        this.grille = new DGrille(taille.getHauteur(), taille.getLargeur());
 
-    }
-
-    public DPartie(DGrille grille, ETailleGrille taille, ECouleur couleur){
-        GLog.appel(this);
-        this.grille = grille;
-        this.taille = taille;
-        this.couleur = couleur;
     }
 
     public DGrille getGrille() {
@@ -38,9 +32,13 @@ public abstract class DPartie extends Donnees {
         return taille;
     }
 
-    public void setCouleur(ECouleur couleur) {
+    public void setCouleur(ECouleur couleurJoue) {
         GLog.appel(this);
-        this.couleur = couleur;
+        if(couleurJoue == ECouleur.bleu){
+            this.couleur = ECouleur.rouge;
+        }else{
+            this.couleur = ECouleur.bleu;
+        }
     }
 
     public void setGrille(DGrille grille) {
