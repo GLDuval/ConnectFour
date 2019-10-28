@@ -11,7 +11,6 @@ public abstract class Activite extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         GLog.appel(this);
-        GLog.valeurs("onCreate", savedInstanceState);
         super.onCreate(savedInstanceState);
 
         int contentViewId = getLayoutId();

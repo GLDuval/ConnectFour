@@ -14,13 +14,6 @@ public class DGrille extends Donnees {
 
     }
 
-    public DGrille(int hauteur, int largeur){
-        GLog.appel(this);
-        for(int i=0; i<largeur; i++){
-            DColonne colonne = new DColonne(hauteur);
-            colonnes.add(colonne);
-        }
-    }
 
     public ArrayList<DColonne> getColonnes(){
         GLog.appel(this);
@@ -30,5 +23,16 @@ public class DGrille extends Donnees {
     public void setColonnes(ArrayList<DColonne> colonnes) {
         GLog.appel(this);
         this.colonnes = colonnes;
+    }
+
+    public void initialiserGrille(int hauteur, int largeur){
+        GLog.appel(this);
+        if(colonnes.isEmpty()){
+            for(int i=0; i<largeur; i++){
+                DColonne colonne = new DColonne(hauteur);
+                colonnes.add(colonne);
+            }
+        }
+
     }
 }

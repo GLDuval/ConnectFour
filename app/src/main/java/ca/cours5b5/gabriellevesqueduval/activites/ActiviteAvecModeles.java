@@ -25,6 +25,7 @@ public abstract class ActiviteAvecModeles<D extends Donnees, M extends Modele, P
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+        GLog.appel(this);
         super.onSaveInstanceState(outState);
         EntrepotDeDonnees.sauvegarderDonnees(donnees, outState);
     }

@@ -1,9 +1,12 @@
 package ca.cours5b5.gabriellevesqueduval.enumerations;
 
+import ca.cours5b5.gabriellevesqueduval.global.GLog;
+
 public enum ETailleGrille {
     petite, moyenne, grande;
 
     public int getHauteur(){
+        GLog.appel(this);
         int hauteur = 0;
         if(this == petite){
             hauteur = 4;
@@ -16,6 +19,7 @@ public enum ETailleGrille {
     }
 
     public int getLargeur(){
+        GLog.appel(this);
         int largeur = 0;
         if(this == petite){
             largeur = 4;

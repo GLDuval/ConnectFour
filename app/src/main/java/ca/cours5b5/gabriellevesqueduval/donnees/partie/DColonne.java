@@ -9,7 +9,6 @@ public class DColonne extends Donnees {
     private ArrayList<DCase> cases = new ArrayList<>();
 
     public DColonne(){
-
         GLog.appel(this);
     }
 

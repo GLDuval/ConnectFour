@@ -46,8 +46,6 @@ public class EntrepotDeDonnees {
                 donnees = donneesSurDisque(classeDonnees, repertoireDonnees);
             }
 
-
-
         }else {
             donnees = donneesDansEtat(classeDonnees, etat);
         }
@@ -61,8 +59,10 @@ public class EntrepotDeDonnees {
         try {
             donnees = classeDonnees.newInstance();
         } catch (IllegalAccessException e) {
+            GLog.valeurs(e.getMessage());
             e.printStackTrace();
         } catch (InstantiationException e) {
+            GLog.valeurs(e.getMessage());
             e.printStackTrace();
         }
         return donnees;
@@ -72,7 +72,9 @@ public class EntrepotDeDonnees {
         GLog.appel(EntrepotDeDonnees.class);
 
         String chaineJson = etat.getString(clePourClasseDonnees(classeDonnees));
+
         D donnees = gson.fromJson(chaineJson, classeDonnees);
+
         GLog.valeurs("Données chargées: ", classeDonnees, chaineJson );
 
 
@@ -105,7 +107,9 @@ public class EntrepotDeDonnees {
 
         String chaineJson = gson.toJson(donnees);
         String cle = clePourClasseDonnees(donnees.getClass());
+
         outState.putString(cle, chaineJson);
+
         GLog.valeurs("Données sauvegardées: ", cle, chaineJson);
 
     }
@@ -142,6 +146,7 @@ public class EntrepotDeDonnees {
     private static boolean siDonneesSontSurDisque(Class <? extends Donnees> classeDonnees, File repertoireDonnees){
         GLog.appel(EntrepotDeDonnees.class);
         boolean present = false;
+
         for (File file: repertoireDonnees.listFiles()) {
             if(file.getName().equals(nomFichierPourClasseDonnees(classeDonnees))){
                 present = true;
@@ -159,12 +164,14 @@ public class EntrepotDeDonnees {
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream));
             String chaineJson;
+
             while((chaineJson = reader.readLine()) != null){
-                GLog.valeurs(chaineJson);
                 donnees = gson.fromJson(chaineJson, classeDonnees);
             }
+
             reader.close();
             fileInputStream.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -178,16 +185,23 @@ public class EntrepotDeDonnees {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(fichierDonnees(donnees.getClass(), repertoireDonnees));
             Writer writer = new BufferedWriter(new OutputStreamWriter(fileOutputStream));
+
             writer.write(chaineJson);
+
             writer.close();
             fileOutputStream.close();
+
         } catch (FileNotFoundException e) {
-            GLog.valeurs(e.getMessage());
             e.printStackTrace();
         } catch (IOException e) {
-            GLog.valeurs(e.getMessage());
             e.printStackTrace();
         }
 
+    }
+
+    public static <D extends Donnees>  void effacerDonnees(Class<D> classeDonnees, File repertoireDonnees){
+        GLog.appel(EntrepotDeDonnees.class);
+        fichierDonnees(classeDonnees, repertoireDonnees).delete();
+        donneesMap.clear();
     }
 }
