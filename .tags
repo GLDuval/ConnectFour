@@ -1,0 +1,27 @@
+find ~/ -name "*tp02*" 2>/dev/null | while read i; do ls -lah "$i"; done
+-rw-rw-r--. 1 gabld gabld 650 14 nov 12:38 /home/gabld/AndroidStudioProjects/GabrielLevesqueDuval/tp02.sh
+find ~/ -name "*.zip" 2>/dev/null | while read i; do ls -lah "$i"; done
+-rw-rw-r--. 1 gabld gabld 89K 26 aoû 13:35 /home/gabld/Android/Sdk/platforms/android-29/data/annotations.zip
+-rw-rw-r--. 1 gabld gabld 77K 26 aoû 13:35 /home/gabld/Android/Sdk/platform-tools/api/annotations.zip
+-rw-rw-r--. 1 gabld gabld 550 26 aoû 14:03 /home/gabld/.gradle/caches/transforms-2/files-2.1/7ec682ca46f5c90ea9a9e0cba0c0310a/print-1.0.0/annotations.zip
+-rw-rw-r--. 1 gabld gabld 2,2K 26 aoû 14:03 /home/gabld/.gradle/caches/transforms-2/files-2.1/f6a183f8595ca34f3d5cc99d1f8bc322/appcompat-1.0.2/annotations.zip
+-rw-rw-r--. 1 gabld gabld 849 26 aoû 14:03 /home/gabld/.gradle/caches/transforms-2/files-2.1/34085af895daa23049fd0af188e6a001/drawerlayout-1.0.0/annotations.zip
+-rw-rw-r--. 1 gabld gabld 7,2K 26 aoû 14:03 /home/gabld/.gradle/caches/transforms-2/files-2.1/72b2b92ec4ab73ff21fb9bc348de3b22/core-1.0.1/annotations.zip
+-rw-rw-r--. 1 gabld gabld 475 26 aoû 14:03 /home/gabld/.gradle/caches/transforms-2/files-2.1/04087833f388d5ffa97a080d757646c2/coordinatorlayout-1.0.0/annotations.zip
+-rw-rw-r--. 1 gabld gabld 476 26 aoû 14:03 /home/gabld/.gradle/caches/transforms-2/files-2.1/4f37a040d795d0eef135b10b20545e3f/fragment-1.0.0/annotations.zip
+-rw-rw-r--. 1 gabld gabld 447 26 aoû 14:03 /home/gabld/.gradle/caches/transforms-2/files-2.1/31dc29ba3158cee4b1ca2bf2f6ff141b/swiperefreshlayout-1.0.0/annotations.zip
+-rw-rw-r--. 1 gabld gabld 127M 26 aoû 14:02 /home/gabld/.gradle/wrapper/dists/gradle-5.4.1-all/3221gyojl5jsh0helicew7rwx/gradle-5.4.1-all.zip
+-rw-rw-r--. 1 gabld gabld 11K 26 aoû 14:02 /home/gabld/.gradle/wrapper/dists/gradle-5.4.1-all/3221gyojl5jsh0helicew7rwx/gradle-5.4.1/docs/javadoc/type-search-index.zip
+-rw-rw-r--. 1 gabld gabld 1,5K 26 aoû 14:02 /home/gabld/.gradle/wrapper/dists/gradle-5.4.1-all/3221gyojl5jsh0helicew7rwx/gradle-5.4.1/docs/javadoc/package-search-index.zip
+-rw-rw-r--. 1 gabld gabld 97K 26 aoû 14:02 /home/gabld/.gradle/wrapper/dists/gradle-5.4.1-all/3221gyojl5jsh0helicew7rwx/gradle-5.4.1/docs/javadoc/member-search-index.zip
+-rw-rw-r--. 1 gabld gabld 332 26 aoû 14:02 /home/gabld/.gradle/wrapper/dists/gradle-5.4.1-all/3221gyojl5jsh0helicew7rwx/gradle-5.4.1/samples/userguide/files/copy/groovy/src/main/assets.zip
+-rw-rw-r--. 1 gabld gabld 332 26 aoû 14:02 /home/gabld/.gradle/wrapper/dists/gradle-5.4.1-all/3221gyojl5jsh0helicew7rwx/gradle-5.4.1/samples/userguide/files/copy/kotlin/src/main/assets.zip
+-rw-rw-r--. 1 gabld gabld 616 26 aoû 14:02 /home/gabld/.gradle/wrapper/dists/gradle-5.4.1-all/3221gyojl5jsh0helicew7rwx/gradle-5.4.1/samples/userguide/files/archives/groovy/src/resources/thirdPartyResources.zip
+-rw-rw-r--. 1 gabld gabld 616 26 aoû 14:02 /home/gabld/.gradle/wrapper/dists/gradle-5.4.1-all/3221gyojl5jsh0helicew7rwx/gradle-5.4.1/samples/userguide/files/archives/kotlin/src/resources/thirdPartyResources.zip
+-rw-rw-r--. 1 gabld gabld 144 26 aoû 14:02 /home/gabld/.gradle/wrapper/dists/gradle-5.4.1-all/3221gyojl5jsh0helicew7rwx/gradle-5.4.1/samples/maven/pomGeneration/groovy/lib/providedRuntime-1.0.zip
+-rw-rw-r--. 1 gabld gabld 144 26 aoû 14:02 /home/gabld/.gradle/wrapper/dists/gradle-5.4.1-all/3221gyojl5jsh0helicew7rwx/gradle-5.4.1/samples/maven/pomGeneration/kotlin/lib/providedRuntime-1.0.zip
+-rw-r--r--. 1 gabld gabld 2,1M  8 aoû 20:07 /home/gabld/android-studio/lib/ant/src.zip
+-rw-r--r--. 1 gabld gabld 90K  8 aoû 20:07 /home/gabld/android-studio/plugins/sdk-updates/offline-repo/com.android.support.constraint-constraint-layout-solver-1.0.2.zip
+-rw-r--r--. 1 gabld gabld 39K  8 aoû 20:07 /home/gabld/android-studio/plugins/sdk-updates/offline-repo/com.android.support.constraint-constraint-layout-1.0.2.zip
+-rw-rw-r--. 1 gabld gabld 185K 28 oct 13:54 /home/gabld/.AndroidStudio3.5/config/tasks/GabrielLevesqueDuval.tasks.zip
+-rw-rw-r--. 1 gabld gabld 139 26 aoû 14:02 /home/gabld/.AndroidStudio3.5/config/tasks/GabrielLevesqueDuval.contexts.zip
