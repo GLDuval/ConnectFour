@@ -9,6 +9,7 @@ public abstract class ActiviteAvecControles extends Activite {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         GLog.appel(this);
+        GLog.valeurs("Bundle", savedInstanceState);
         super.onCreate(savedInstanceState);
         recupererControles();
 

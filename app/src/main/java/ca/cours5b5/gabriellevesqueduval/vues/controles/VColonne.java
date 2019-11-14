@@ -8,6 +8,8 @@ import android.widget.LinearLayout;
 import androidx.annotation.Nullable;
 
 
+import javax.microedition.khronos.opengles.GL;
+
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
 
 public class VColonne extends LinearLayout {
@@ -75,10 +77,12 @@ public class VColonne extends LinearLayout {
     }
 
     public VCase[] getCases() {
+        GLog.appel(this);
         return cases;
     }
 
     public VEntete getEnTete() {
+        GLog.appel(this);
         return enTete;
     }
 

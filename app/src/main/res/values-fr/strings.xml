@@ -7,6 +7,7 @@
     <string name="grandeTaille">Grande</string>
     <string name="switchPrecedente">Continuer partie précédente</string>
     <string name="boutonConnexion">Connexion</string>
+    <string name="boutonDeconnexion">Deconnexion</string>
     <string name="boutonJouer">Jouer</string>
     <string name="boutonEnLigne">Jouer en ligne</string>
     <string name="boutonParametres">Paramètres</string>

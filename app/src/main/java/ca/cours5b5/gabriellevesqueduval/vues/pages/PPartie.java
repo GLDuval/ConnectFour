@@ -72,8 +72,6 @@ public abstract class PPartie extends PageAvecModeles<DPartie, MPartie> {
         donnees.setTaille(dParametres.getTaille());
 
         grille.creerGrille(donnees.getTaille().getHauteur(), donnees.getTaille().getLargeur());
-
-        afficherLesDonnees(donnees);
     }
 
     @Override

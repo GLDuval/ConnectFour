@@ -19,6 +19,7 @@ public abstract class ActiviteAvecModeles<D extends Donnees, M extends Modele, P
     @Override
     protected void onCreate(Bundle savedInstanceState){
         GLog.appel(this);
+        GLog.valeurs("Bundle", savedInstanceState);
         super.onCreate(savedInstanceState);
         initialiserDonneesPageModele(savedInstanceState);
     }

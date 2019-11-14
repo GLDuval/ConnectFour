@@ -9,6 +9,8 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
+import javax.microedition.khronos.opengles.GL;
+
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
 
 public class VGrille extends LinearLayout {
@@ -58,6 +60,7 @@ public class VGrille extends LinearLayout {
     }
 
     public ArrayList<VColonne> getListeColonnes() {
+        GLog.appel(this);
         return listeColonnes;
     }
 }

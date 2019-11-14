@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "827864498917",
+    "firebase_url": "https://cours5b5gabriellevesqueduval.firebaseio.com",
+    "project_id": "cours5b5gabriellevesqueduval",
+    "storage_bucket": "cours5b5gabriellevesqueduval.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827864498917:android:3aa5802032ec8c15f24a0c",
+        "android_client_info": {
+          "package_name": "ca.cours5b5.gabriellevesqueduval"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "827864498917-fh08ra41dn8plb04nj475fvoantmo8uk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfQrgVAfyuatxgpM6qb6-L1SaPU55rUPs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "827864498917-fh08ra41dn8plb04nj475fvoantmo8uk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
