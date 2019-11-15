@@ -12,6 +12,10 @@ public class GUsagerCourant {
 
     public static String getId(){
         GLog.appel(GUsagerCourant.class);
-        return FirebaseAuth.getInstance().getUid();
+        String uid = FirebaseAuth.getInstance().getUid();
+        if(uid == null){
+            uid = GConstantes.USAGER_DEFAUT;
+        }
+        return uid;
     }
 }

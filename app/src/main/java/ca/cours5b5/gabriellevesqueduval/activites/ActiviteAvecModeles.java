@@ -6,78 +6,80 @@ import java.io.File;
 
 import ca.cours5b5.gabriellevesqueduval.donnees.Donnees;
 import ca.cours5b5.gabriellevesqueduval.donnees.EntrepotDeDonnees;
+import ca.cours5b5.gabriellevesqueduval.donnees.RetourDonnees;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
 import ca.cours5b5.gabriellevesqueduval.modeles.Modele;
 import ca.cours5b5.gabriellevesqueduval.vues.pages.PageAvecModeles;
 
 public abstract class ActiviteAvecModeles<D extends Donnees, M extends Modele, P extends PageAvecModeles> extends Activite {
 
-    private D donnees;
-    private P page;
+    protected D donnees;
+    protected P page;
+    private M modele;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         GLog.appel(this);
-        GLog.valeurs("Bundle", savedInstanceState);
         super.onCreate(savedInstanceState);
-        initialiserDonneesPageModele(savedInstanceState);
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        GLog.appel(this);
-        super.onSaveInstanceState(outState);
-        EntrepotDeDonnees.sauvegarderDonnees(donnees, outState);
-    }
-
-
-    private void initialiserDonneesPageModele(Bundle etat){
-        GLog.appel(this);
-        donnees = recupererDonnees(etat);
-        initialiserPageModele(donnees);
-    }
-
-    private void initialiserPageModele(D donnees){
-
-        GLog.appel(this);
         page = recupererPage();
-        page.creerAffichage(donnees);
-        creerModele(donnees, page);
+        obtenirDonneesPuisInitialiserModelePage();
 
+    }
+
+    private void creerAffichage(){
+        GLog.appel(this);
+        page.creerAffichage(donnees);
+    }
+
+    private void rafraichirAffichage(){
+        GLog.appel(this);
+        page.rafraichirAffichage(donnees);
+    }
+
+    private void initialiserPage(){
+        GLog.appel(this);
+        creerAffichage();
+        rafraichirAffichage();
+    }
+
+    private void memoriserDonneesPuisInitialiserModelePage(D donneesObtenues){
+        GLog.appel(this);
+
+        donnees = donneesObtenues;
+
+        initialiserPage();
+
+        modele = creerModele(donnees, page);
+
+    }
+
+    private void obtenirDonneesPuisInitialiserModelePage(){
+        GLog.appel(this);
+        EntrepotDeDonnees.obtenirDonnees(getClassDonnees(), new RetourDonnees<D>() {
+            @Override
+            public void recevoirDonnees(D donnees) {
+                GLog.appel(this);
+                memoriserDonneesPuisInitialiserModelePage(donnees);
+            }
+        });
     }
 
     private P recupererPage(){
-
         GLog.appel(this);
         int pageID = getIdPage();
         page = findViewById(pageID);
         return page;
     }
 
-    @Override
-    protected void onResume(){
-        GLog.appel(this);
-        super.onResume();
-        page.rafraichirAffichage(donnees);
-    }
-
-    private File repertoireDonnees(){
-        GLog.appel(this);
-        return this.getFilesDir();
-    }
 
     @Override
     protected void onPause(){
         GLog.appel(this);
         super.onPause();
-        EntrepotDeDonnees.sauvegarderSurDisque(donnees, repertoireDonnees());
+        EntrepotDeDonnees.sauvegarderDonneesSurServeur(donnees);
     }
 
-    private D recupererDonnees(Bundle etat){
-        GLog.appel(this);
-        return EntrepotDeDonnees.obtenirDonnees(getClassDonnees(), etat, repertoireDonnees());
-    }
 
     protected abstract int getIdPage();
 

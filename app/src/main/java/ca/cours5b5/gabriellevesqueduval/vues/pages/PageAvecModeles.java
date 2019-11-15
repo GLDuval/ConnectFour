@@ -28,4 +28,5 @@ public abstract class PageAvecModeles<D extends Donnees, M extends Modele> exten
     public abstract void rafraichirAffichage(D donnees);
 
     public abstract void installerCapteurs(M modele);
+
 }

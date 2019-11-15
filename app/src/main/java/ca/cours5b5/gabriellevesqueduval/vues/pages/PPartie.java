@@ -16,10 +16,12 @@ import java.util.ArrayList;
 import ca.cours5b5.gabriellevesqueduval.R;
 import ca.cours5b5.gabriellevesqueduval.donnees.DParametres;
 import ca.cours5b5.gabriellevesqueduval.donnees.EntrepotDeDonnees;
+import ca.cours5b5.gabriellevesqueduval.donnees.RetourDonnees;
 import ca.cours5b5.gabriellevesqueduval.donnees.partie.DCase;
 import ca.cours5b5.gabriellevesqueduval.donnees.partie.DColonne;
 import ca.cours5b5.gabriellevesqueduval.donnees.partie.DPartie;
 import ca.cours5b5.gabriellevesqueduval.enumerations.ECouleur;
+import ca.cours5b5.gabriellevesqueduval.enumerations.ETailleGrille;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
 import ca.cours5b5.gabriellevesqueduval.modeles.MPartie;
 import ca.cours5b5.gabriellevesqueduval.vues.controles.VColonne;
@@ -64,12 +66,11 @@ public abstract class PPartie extends PageAvecModeles<DPartie, MPartie> {
     }
 
     @Override
-    public void creerAffichage(DPartie donnees) {
+    public void creerAffichage(final DPartie donnees) {
         GLog.appel(this);
 
-        DParametres dParametres = EntrepotDeDonnees.obtenirDonnees(DParametres.class, null, context.getFilesDir());
+        donnees.setTaille(ETailleGrille.moyenne);
 
-        donnees.setTaille(dParametres.getTaille());
 
         grille.creerGrille(donnees.getTaille().getHauteur(), donnees.getTaille().getLargeur());
     }
@@ -128,8 +129,8 @@ public abstract class PPartie extends PageAvecModeles<DPartie, MPartie> {
 
             }
         }
-
-
-
     }
+
+
+
 }

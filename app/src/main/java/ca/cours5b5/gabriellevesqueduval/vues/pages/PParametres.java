@@ -39,7 +39,6 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
     @Override
     public void creerAffichage(DParametres donnees) {
         GLog.appel(this);
-        afficherLesDonnees(donnees);
     }
 
     @Override
@@ -102,6 +101,7 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
         });
 
     }
+
 
 
     private void afficherLesDonnees(DParametres donnees){

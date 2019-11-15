@@ -48,6 +48,10 @@ public class AAccueil extends ActiviteAvecControles {
         buttonParametres = findViewById(R.id.buttonParametres);
         GLog.valeurs(buttonConnexion, buttonEnLigne, buttonJouer, buttonParametres);
 
+        if(GUsagerCourant.siConnecte()){
+            buttonConnexion.setText(R.string.boutonDeconnexion);
+        }
+
         buttonParametres.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,12 +67,12 @@ public class AAccueil extends ActiviteAvecControles {
                 GLog.appel(this);
                 Intent ouverturePartie = new Intent(AAccueil.this, APartieLocale.class);
 
-                DParametres dParametres = EntrepotDeDonnees.obtenirDonnees(DParametres.class, null, AAccueil.this.getFilesDir());
-                DPartie dPartie = EntrepotDeDonnees.obtenirDonnees(DPartieLocale.class, null, AAccueil.this.getFilesDir());
+               /* DParametres dParametres = EntrepotDeDonnees.obtenirDonnees(DParametres.class, null);
+                DPartie dPartie = EntrepotDeDonnees.obtenirDonnees(DPartieLocale.class, null);
 
                 if(!dParametres.isContinuer() || dPartie.getTaille() != dParametres.getTaille()){
                     EntrepotDeDonnees.effacerDonnees(DPartieLocale.class, AAccueil.this.getFilesDir());
-                }
+                }*/
 
                 AAccueil.this.startActivity(ouverturePartie);
             }
@@ -119,6 +123,7 @@ public class AAccueil extends ActiviteAvecControles {
         AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
+                GLog.appel(this);
                 buttonConnexion.setText(R.string.boutonConnexion);
                 activationJouerEnLigne(false);
                 GLog.valeurs("Usager", GUsagerCourant.getId());
