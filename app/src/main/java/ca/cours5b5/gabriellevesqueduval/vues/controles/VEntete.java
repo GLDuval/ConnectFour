@@ -5,10 +5,13 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatButton;
 
+import ca.cours5b5.gabriellevesqueduval.commandes.CCoupIci;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
 
 
 public class VEntete extends AppCompatButton {
+
+    private CCoupIci cCoupIci;
 
 
     public VEntete(Context context) {
@@ -30,6 +33,14 @@ public class VEntete extends AppCompatButton {
         super(context);
         GLog.appel(this);
         this.setText(colCourante + "\n↓");
+    }
+
+    public CCoupIci getcCoupIci(){
+        return cCoupIci;
+    }
+
+    public void setcCoupIci(CCoupIci cCoupIci){
+        this.cCoupIci = cCoupIci;
     }
 
 }

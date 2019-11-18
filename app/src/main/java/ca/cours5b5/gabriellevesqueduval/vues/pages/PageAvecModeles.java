@@ -25,8 +25,14 @@ public abstract class PageAvecModeles<D extends Donnees, M extends Modele> exten
 
     public abstract void creerAffichage(D donnees);
 
-    public abstract void rafraichirAffichage(D donnees);
+    public void rafraichirAffichage(D donnees){
+        GLog.appel(this);
+        raffraichirCommandes();
+    }
 
-    public abstract void installerCapteurs(M modele);
+    public abstract void installerCapteurs();
 
+    public abstract void creerCommandes();
+
+    public abstract void raffraichirCommandes();
 }

@@ -2,8 +2,6 @@ package ca.cours5b5.gabriellevesqueduval.activites;
 
 import android.os.Bundle;
 
-import java.io.File;
-
 import ca.cours5b5.gabriellevesqueduval.donnees.Donnees;
 import ca.cours5b5.gabriellevesqueduval.donnees.EntrepotDeDonnees;
 import ca.cours5b5.gabriellevesqueduval.donnees.RetourDonnees;
@@ -30,11 +28,15 @@ public abstract class ActiviteAvecModeles<D extends Donnees, M extends Modele, P
     private void creerAffichage(){
         GLog.appel(this);
         page.creerAffichage(donnees);
+        page.creerCommandes();
+        page.installerCapteurs();
     }
 
     private void rafraichirAffichage(){
         GLog.appel(this);
+        page.raffraichirCommandes();
         page.rafraichirAffichage(donnees);
+
     }
 
     private void initialiserPage(){
@@ -47,10 +49,10 @@ public abstract class ActiviteAvecModeles<D extends Donnees, M extends Modele, P
         GLog.appel(this);
 
         donnees = donneesObtenues;
-
+        modele = creerModele(donnees, page);
         initialiserPage();
 
-        modele = creerModele(donnees, page);
+
 
     }
 

@@ -4,6 +4,7 @@ import android.os.Environment;
 
 import java.util.ArrayList;
 
+import ca.cours5b5.gabriellevesqueduval.commandes.CCoupIci;
 import ca.cours5b5.gabriellevesqueduval.donnees.DParametres;
 import ca.cours5b5.gabriellevesqueduval.donnees.EntrepotDeDonnees;
 import ca.cours5b5.gabriellevesqueduval.donnees.partie.DCase;
@@ -13,6 +14,8 @@ import ca.cours5b5.gabriellevesqueduval.global.GLog;
 import ca.cours5b5.gabriellevesqueduval.vues.pages.PPartie;
 
 public abstract class MPartie extends Modele<DPartie, PPartie> {
+
+    int indiceCol;
 
     public MPartie(DPartie donnees, PPartie page) {
 
@@ -24,6 +27,7 @@ public abstract class MPartie extends Modele<DPartie, PPartie> {
         GLog.appel(this);
         changerCouleurCase(indiceCol);
         page.rafraichirAffichage(donnees);
+        this.indiceCol = indiceCol;
 
     }
 
@@ -41,6 +45,19 @@ public abstract class MPartie extends Modele<DPartie, PPartie> {
             }
         }
 
+    }
+
+    public boolean siColonnePleine(int indiceCol){
+        GLog.appel(this);
+
+        ArrayList<DCase> cases = donnees.getGrille().getColonnes().get(indiceCol).getCases();
+
+        return cases.get(0).getCouleur() == ECouleur.gris;
+    }
+
+    protected void initialiserCommandes(){
+        GLog.appel(this);
+        CCoupIci.initialiser(this);
     }
 
 

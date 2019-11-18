@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 
 import ca.cours5b5.gabriellevesqueduval.R;
+import ca.cours5b5.gabriellevesqueduval.commandes.CCoupIci;
 import ca.cours5b5.gabriellevesqueduval.donnees.DParametres;
 import ca.cours5b5.gabriellevesqueduval.donnees.EntrepotDeDonnees;
 import ca.cours5b5.gabriellevesqueduval.donnees.RetourDonnees;
@@ -34,24 +35,21 @@ public abstract class PPartie extends PageAvecModeles<DPartie, MPartie> {
     private VGrille grille;
     private TextView textViewNom1;
     private TextView textViewNom2;
-    private Context context;
+
 
     public PPartie(Context context) {
         super(context);
         GLog.appel(this);
-        this.context = context;
     }
 
     public PPartie(Context context, AttributeSet attrs) {
         super(context, attrs);
         GLog.appel(this);
-        this.context = context;
     }
 
     public PPartie(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         GLog.appel(this);
-        this.context = context;
     }
 
     @Override
@@ -70,6 +68,7 @@ public abstract class PPartie extends PageAvecModeles<DPartie, MPartie> {
         GLog.appel(this);
 
         donnees.setTaille(ETailleGrille.moyenne);
+        donnees.setCouleur(donnees.getCouleur());
 
 
         grille.creerGrille(donnees.getTaille().getHauteur(), donnees.getTaille().getLargeur());
@@ -78,27 +77,48 @@ public abstract class PPartie extends PageAvecModeles<DPartie, MPartie> {
     @Override
     public void rafraichirAffichage(DPartie donnees) {
         GLog.appel(this);
+        super.rafraichirAffichage(donnees);
         afficherLesDonnees(donnees);
     }
 
     @Override
-    public void installerCapteurs(final MPartie modele) {
+    public void installerCapteurs() {
         GLog.appel(this);
         for (final VColonne colonne : grille.getListeColonnes()) {
 
-            VEntete enTete = colonne.getEnTete();
+            final VEntete enTete = colonne.getEnTete();
 
             enTete.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     GLog.appel(this);
 
-                    modele.jetonJoue(colonne.getIndice());
+                    enTete.getcCoupIci().executer();
 
                 }
             });
         }
 
+    }
+
+    @Override
+    public void creerCommandes(){
+        GLog.appel(this);
+        int indice = 0;
+        for(VColonne colonne : grille.getListeColonnes()){
+            colonne.getEnTete().setcCoupIci(new CCoupIci(indice));
+            indice++;
+        }
+    }
+
+    @Override
+    public void raffraichirCommandes(){
+        GLog.appel(this);
+        for(VColonne colonne : grille.getListeColonnes()){
+            if(!colonne.getEnTete().getcCoupIci().siExecutable()){
+               colonne.getEnTete().setEnabled(false);
+            }
+        }
     }
 
     private void afficherLesDonnees(DPartie donnees){

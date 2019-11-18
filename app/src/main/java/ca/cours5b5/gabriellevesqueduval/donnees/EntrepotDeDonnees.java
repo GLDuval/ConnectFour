@@ -47,8 +47,6 @@ public class EntrepotDeDonnees {
 
     private static DocumentReference referenceDocument(Class<? extends Donnees> classeDonnees){
         GLog.appel(EntrepotDeDonnees.class);
-        GLog.valeurs("Path1",nomCollection(classeDonnees));
-        GLog.valeurs("Path2", idDocument());
         return firestore.collection(nomCollection(classeDonnees)).document(idDocument());
     }
 

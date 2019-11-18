@@ -8,8 +8,11 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import ca.cours5b5.gabriellevesqueduval.R;
+import ca.cours5b5.gabriellevesqueduval.commandes.CContinuerPartie;
+import ca.cours5b5.gabriellevesqueduval.commandes.CTailleGrille;
 import ca.cours5b5.gabriellevesqueduval.donnees.DParametres;
 import ca.cours5b5.gabriellevesqueduval.enumerations.ETailleGrille;
+import ca.cours5b5.gabriellevesqueduval.global.GConstantes;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
 import ca.cours5b5.gabriellevesqueduval.modeles.MParametres;
 
@@ -20,6 +23,13 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
     private CheckBox checkBoxMoyenne;
     private CheckBox checkBoxGrande;
     private Switch switchReprendre;
+
+    private CTailleGrille cTailleGrillePetite;
+    private CTailleGrille cTailleGrilleMoyenne;
+    private CTailleGrille cTailleGrilleGrande;
+    private CContinuerPartie cContinuerPartieTrue;
+    private CContinuerPartie cContinuerPartieFalse;
+
 
     public PParametres(Context context) {
         super(context);
@@ -43,7 +53,9 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
 
     @Override
     public void rafraichirAffichage(DParametres donnees) {
+        super.rafraichirAffichage(donnees);
         GLog.appel(this);
+
         afficherLesDonnees(donnees);
     }
 
@@ -61,7 +73,7 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
     }
 
     @Override
-    public void installerCapteurs(final MParametres modele) {
+    public void installerCapteurs() {
 
         GLog.appel(this);
 
@@ -69,7 +81,7 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
             @Override
             public void onClick(View view) {
                 GLog.appel(this);
-                modele.changementTaille(ETailleGrille.grande);
+                cTailleGrilleGrande.executer();
                 checkBoxPetite.setChecked(false);
                 checkBoxMoyenne.setChecked(false);
             }
@@ -78,7 +90,7 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
             @Override
             public void onClick(View view) {
                 GLog.appel(this);
-                modele.changementTaille(ETailleGrille.moyenne);
+                cTailleGrilleMoyenne.executer();
                 checkBoxPetite.setChecked(false);
                 checkBoxGrande.setChecked(false);
             }
@@ -87,7 +99,7 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
             @Override
             public void onClick(View view) {
                 GLog.appel(this);
-                modele.changementTaille(ETailleGrille.petite);
+                cTailleGrillePetite.executer();
                 checkBoxMoyenne.setChecked(false);
                 checkBoxGrande.setChecked(false);
             }
@@ -96,12 +108,45 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
             @Override
             public void onClick(View view) {
                 GLog.appel(this);
-                modele.changementContinuer(switchReprendre.isChecked());
+                if(switchReprendre.isChecked()){
+                    cContinuerPartieTrue.executer();
+                }else{
+                    cContinuerPartieFalse.executer();
+                }
             }
         });
 
     }
 
+    @Override
+    public void creerCommandes() {
+        GLog.appel(this);
+        cTailleGrillePetite = new CTailleGrille(ETailleGrille.petite);
+        cTailleGrilleMoyenne = new CTailleGrille(ETailleGrille.moyenne);
+        cTailleGrilleGrande = new CTailleGrille(ETailleGrille.grande);
+        cContinuerPartieTrue = new CContinuerPartie(true);
+        cContinuerPartieFalse = new CContinuerPartie(false);
+    }
+
+    @Override
+    public void raffraichirCommandes() {
+        GLog.appel(this);
+
+        if(!cTailleGrillePetite.siExecutable()){
+            checkBoxPetite.setClickable(false);
+            checkBoxMoyenne.setClickable(true);
+            checkBoxGrande.setClickable(true);
+        }else if(!cTailleGrilleMoyenne.siExecutable()){
+            checkBoxPetite.setClickable(true);
+            checkBoxMoyenne.setClickable(false);
+            checkBoxGrande.setClickable(true);
+        }else if(!cTailleGrilleGrande.siExecutable()){
+            checkBoxPetite.setClickable(true);
+            checkBoxMoyenne.setClickable(true);
+            checkBoxGrande.setClickable(false);
+        }
+
+    }
 
 
     private void afficherLesDonnees(DParametres donnees){
