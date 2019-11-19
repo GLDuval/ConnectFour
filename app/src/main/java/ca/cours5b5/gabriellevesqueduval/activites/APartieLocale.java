@@ -1,6 +1,7 @@
 package ca.cours5b5.gabriellevesqueduval.activites;
 
 import ca.cours5b5.gabriellevesqueduval.R;
+import ca.cours5b5.gabriellevesqueduval.commandes.CQuitterActivite;
 import ca.cours5b5.gabriellevesqueduval.donnees.partie.DPartieLocale;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
 import ca.cours5b5.gabriellevesqueduval.modeles.MPartieLocale;
@@ -28,6 +29,7 @@ public class APartieLocale extends ActiviteAvecModeles <DPartieLocale, MPartieLo
     @Override
     protected MPartieLocale creerModele(DPartieLocale donnees, PPartieLocale page) {
         GLog.appel(this);
+        CQuitterActivite.initialiser(this);
         return new MPartieLocale(donnees, page);
     }
 

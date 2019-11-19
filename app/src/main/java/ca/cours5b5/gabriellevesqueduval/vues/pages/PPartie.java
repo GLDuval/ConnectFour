@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import ca.cours5b5.gabriellevesqueduval.R;
 import ca.cours5b5.gabriellevesqueduval.commandes.CCoupIci;
+import ca.cours5b5.gabriellevesqueduval.commandes.CQuitterActivite;
 import ca.cours5b5.gabriellevesqueduval.donnees.DParametres;
 import ca.cours5b5.gabriellevesqueduval.donnees.EntrepotDeDonnees;
 import ca.cours5b5.gabriellevesqueduval.donnees.RetourDonnees;
@@ -64,7 +65,7 @@ public abstract class PPartie extends PageAvecModeles<DPartie, MPartie> {
     }
 
     @Override
-    public void creerAffichage(final DPartie donnees) {
+    public void creerAffichage(DPartie donnees) {
         GLog.appel(this);
 
         donnees.setTaille(ETailleGrille.moyenne);

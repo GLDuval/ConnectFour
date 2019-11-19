@@ -51,4 +51,11 @@ public abstract class Activite extends AppCompatActivity {
 
 
     protected abstract int getLayoutId();
+
+    public void quitter(){
+        GLog.appel(this);
+        this.finish();
+
+    }
 }
+

@@ -13,4 +13,6 @@
     <string name="boutonParametres">Settings</string>
     <string name="nom1">Heather</string>
     <string name="nom2">Bob</string>
+    <string name="messageGagnantRouge">The reds win</string>
+    <string name="messageGagnantBleu">The blues win</string>
 </resources>

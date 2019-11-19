@@ -13,5 +13,7 @@
     <string name="boutonParametres">Paramètres</string>
     <string name="nom1">Alice</string>
     <string name="nom2">Robert</string>
+    <string name="messageGagnantRouge">Les rouges gagnent</string>
+    <string name="messageGagnantBleu">Les bleus gagnent</string>
 
 </resources>
