@@ -24,7 +24,7 @@ public enum ETailleGrille {
         if(this == petite){
             largeur = 4;
         }else if(this == moyenne){
-            largeur = 6;
+            largeur = 7;
         }else if (this == grande){
             largeur = 8;
         }
