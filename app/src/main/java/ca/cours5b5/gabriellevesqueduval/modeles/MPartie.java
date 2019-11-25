@@ -19,8 +19,6 @@ import ca.cours5b5.gabriellevesqueduval.vues.pages.PPartie;
 
 public abstract class MPartie extends Modele<DPartie, PPartie> {
 
-    int indiceCol;
-
     public MPartie(DPartie donnees, PPartie page) {
 
         super(donnees, page);
@@ -31,7 +29,6 @@ public abstract class MPartie extends Modele<DPartie, PPartie> {
         GLog.appel(this);
         int indiceCase = changerCouleurCase(indiceCol);
         page.rafraichirAffichage(donnees);
-        this.indiceCol = indiceCol;
         testerSiPartieGagnee(indiceCol, indiceCase);
 
     }
@@ -89,8 +86,11 @@ public abstract class MPartie extends Modele<DPartie, PPartie> {
     private boolean siPartieGagnee(int indiceCol, int indiceCase){
         GLog.appel(this);
         boolean gagnee = false;
+        if(suiteVerticale(indiceCol) || suiteHorizontale(indiceCase) || suiteDiagonaleDroite(indiceCol, indiceCase) || suiteDiagonaleGauche(indiceCol, indiceCase)){
+            gagnee =true;
+        }
 
-        return suiteHorizontale(indiceCase);
+        return gagnee;
 
     }
 
@@ -101,7 +101,7 @@ public abstract class MPartie extends Modele<DPartie, PPartie> {
         }
     }
 
-    private boolean suiteVerticale(){
+    private boolean suiteVerticale(int indiceCol){
         GLog.appel(this);
         ArrayList<DCase> cases = donnees.getGrille().getColonnes().get(indiceCol).getCases();
         ECouleur couleur = donnees.getCouleur() == ECouleur.bleu ? ECouleur.rouge : ECouleur.bleu;
@@ -117,7 +117,6 @@ public abstract class MPartie extends Modele<DPartie, PPartie> {
                 break;
             }
         }
-        GLog.valeurs(compteur);
         return compteur >= GConstantes.SUITE_GAGNANTE;
     }
 
@@ -135,7 +134,69 @@ public abstract class MPartie extends Modele<DPartie, PPartie> {
             if(compteur>=GConstantes.SUITE_GAGNANTE){
                 break;
             }
-            GLog.valeurs(compteur);
+        }
+        return compteur >= GConstantes.SUITE_GAGNANTE;
+    }
+
+
+    private boolean suiteDiagonaleGauche(int indiceCol, int indiceCase){
+        GLog.appel(this);
+
+        ECouleur couleur = donnees.getCouleur() == ECouleur.bleu ? ECouleur.rouge : ECouleur.bleu;
+        int compteur=0;
+
+        //Boucle pour trouver les coordonnées de départ
+        while (indiceCol > 0 && indiceCase > 0){
+            indiceCase--;
+            indiceCol--;
+        }
+
+        for(int i=indiceCol; i<donnees.getGrille().getColonnes().size(); i++){
+            if(donnees.getGrille().getColonnes().get(i).getCases().get(indiceCase).getCouleur() == couleur){
+                compteur++;
+            }else{
+                compteur=0;
+            }
+
+            if(compteur>=GConstantes.SUITE_GAGNANTE){
+                break;
+            }else if(indiceCase<donnees.getGrille().getColonnes().get(i).getCases().size()-1){
+                indiceCase++;
+            }else{
+                break;
+            }
+
+        }
+        return compteur >= GConstantes.SUITE_GAGNANTE;
+    }
+
+    private boolean suiteDiagonaleDroite(int indiceCol, int indiceCase){
+        GLog.appel(this);
+
+        ECouleur couleur = donnees.getCouleur() == ECouleur.bleu ? ECouleur.rouge : ECouleur.bleu;
+        int compteur=0;
+
+        //Boucle pour trouver les coordonnées de départ
+        while (indiceCol < donnees.getGrille().getColonnes().size()-1 && indiceCase > 0){
+            indiceCase--;
+            indiceCol++;
+        }
+
+        for(int i=indiceCol; i>=0; i--){
+            if(donnees.getGrille().getColonnes().get(i).getCases().get(indiceCase).getCouleur() == couleur){
+                compteur++;
+            }else{
+                compteur=0;
+            }
+
+            if(compteur>=GConstantes.SUITE_GAGNANTE){
+                break;
+            }else if(indiceCase<donnees.getGrille().getColonnes().get(i).getCases().size()-1){
+                indiceCase++;
+            }else{
+                break;
+            }
+
         }
         return compteur >= GConstantes.SUITE_GAGNANTE;
     }
