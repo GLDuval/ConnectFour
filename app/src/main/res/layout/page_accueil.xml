@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:background="@color/colorAccent"
+            android:background="@drawable/button_background"
             android:text="@string/boutonConnexion" />
 
         <Button
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:background="@color/colorAccent"
+            android:background="@drawable/button_background"
             android:text="@string/boutonJouer" />
 
         <Button
@@ -42,7 +42,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:background="@color/colorAccent"
+            android:enabled="false"
+            android:background="@drawable/button_background"
             android:text="@string/boutonEnLigne" />
 
         <Button
@@ -50,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:background="@color/colorAccent"
+            android:background="@drawable/button_background"
             android:text="@string/boutonParametres" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

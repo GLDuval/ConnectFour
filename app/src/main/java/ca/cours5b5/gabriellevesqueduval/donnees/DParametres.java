@@ -4,7 +4,7 @@ import ca.cours5b5.gabriellevesqueduval.enumerations.ETailleGrille;
 import ca.cours5b5.gabriellevesqueduval.global.GConstantes;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
 
-public class DParametres extends Donnees{
+public class DParametres extends Donnees<DParametres>{
 
     private ETailleGrille taille = GConstantes.taille;
     private boolean continuer = GConstantes.continuer;
@@ -32,5 +32,14 @@ public class DParametres extends Donnees{
     public boolean isContinuer(){
         GLog.appel(this);
         return continuer;
+    }
+
+    @Override
+    public void copierDonnees(DParametres dParametres){
+        GLog.appel(this);
+        super.copierDonnees(dParametres);
+
+        this.taille = dParametres.getTaille();
+        this.continuer = dParametres.isContinuer();
     }
 }

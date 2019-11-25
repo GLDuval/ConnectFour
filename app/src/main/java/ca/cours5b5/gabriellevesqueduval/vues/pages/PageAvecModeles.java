@@ -30,6 +30,8 @@ public abstract class PageAvecModeles<D extends Donnees, M extends Modele> exten
         raffraichirCommandes();
     }
 
+    public abstract void detruireAffichage();
+
     public abstract void installerCapteurs();
 
     public abstract void creerCommandes();

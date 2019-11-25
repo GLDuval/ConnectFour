@@ -59,6 +59,11 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
         afficherLesDonnees(donnees);
     }
 
+    @Override
+    public void detruireAffichage() {
+
+    }
+
 
     @Override
     protected void recupererControles() {
@@ -121,9 +126,11 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
     @Override
     public void creerCommandes() {
         GLog.appel(this);
+
         cTailleGrillePetite = new CTailleGrille(ETailleGrille.petite);
         cTailleGrilleMoyenne = new CTailleGrille(ETailleGrille.moyenne);
         cTailleGrilleGrande = new CTailleGrille(ETailleGrille.grande);
+
         cContinuerPartieTrue = new CContinuerPartie(true);
         cContinuerPartieFalse = new CContinuerPartie(false);
     }

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import ca.cours5b5.gabriellevesqueduval.donnees.Donnees;
 import ca.cours5b5.gabriellevesqueduval.donnees.EntrepotDeDonnees;
+import ca.cours5b5.gabriellevesqueduval.donnees.Observateur;
 import ca.cours5b5.gabriellevesqueduval.donnees.RetourDonnees;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
 import ca.cours5b5.gabriellevesqueduval.modeles.Modele;
@@ -21,7 +22,7 @@ public abstract class ActiviteAvecModeles<D extends Donnees, M extends Modele, P
         GLog.appel(this);
         super.onCreate(savedInstanceState);
         page = recupererPage();
-        obtenirDonneesPuisInitialiserModelePage();
+        observerDonneesEtGereModelePage();
 
     }
 
@@ -81,6 +82,43 @@ public abstract class ActiviteAvecModeles<D extends Donnees, M extends Modele, P
         super.onPause();
         EntrepotDeDonnees.sauvegarderDonneesSurServeur(donnees);
     }
+
+    private void detruireAncienModele(){
+        GLog.appel(this);
+        if(modele != null){
+            modele.detruire();
+        }
+    }
+
+    private void  memoriserDonneesPuisGererModelePage(D donneesRecues){
+        GLog.appel(this);
+        detruireAncienModele();
+        donnees = donneesRecues;
+        modele = creerModele(donnees, page);
+        initialiserPage();
+    }
+
+    private void reagirDonneesDuServeur(D donneesDuServeur){
+        GLog.appel(this);
+        donnees.copierDonnees(donneesDuServeur);
+        rafraichirAffichage();
+    }
+
+    protected void observerDonneesEtGereModelePage(){
+        GLog.appel(this);
+        EntrepotDeDonnees.observerDonnees(getClassDonnees(), new Observateur<D>() {
+            @Override
+            protected void nouveau(D donnees) {
+                memoriserDonneesPuisGererModelePage(donnees);
+            }
+
+            @Override
+            protected void donneesDuServeur(D donnees) {
+                reagirDonneesDuServeur(donnees);
+            }
+        });
+    }
+
 
 
     protected abstract int getIdPage();

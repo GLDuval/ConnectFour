@@ -50,6 +50,7 @@ public class AAccueil extends ActiviteAvecControles {
 
         if(GUsagerCourant.siConnecte()){
             buttonConnexion.setText(R.string.boutonDeconnexion);
+            buttonEnLigne.setEnabled(true);
         }
 
         buttonParametres.setOnClickListener(new View.OnClickListener() {

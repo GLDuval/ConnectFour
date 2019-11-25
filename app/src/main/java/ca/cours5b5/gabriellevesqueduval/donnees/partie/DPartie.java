@@ -5,7 +5,7 @@ import ca.cours5b5.gabriellevesqueduval.enumerations.ECouleur;
 import ca.cours5b5.gabriellevesqueduval.enumerations.ETailleGrille;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
 
-public abstract class DPartie extends Donnees {
+public abstract class DPartie extends Donnees<DPartie> {
 
     private DGrille grille;
     private ETailleGrille taille;
@@ -32,9 +32,9 @@ public abstract class DPartie extends Donnees {
         return taille;
     }
 
-    public void setCouleur(ECouleur couleurJoue) {
+    public void prochaineCouleur() {
         GLog.appel(this);
-        if(couleurJoue == ECouleur.bleu){
+        if(this.couleur == ECouleur.bleu){
             this.couleur = ECouleur.rouge;
         }else{
             this.couleur = ECouleur.bleu;
@@ -50,6 +50,15 @@ public abstract class DPartie extends Donnees {
         GLog.appel(this);
         this.taille = taille;
         grille.initialiserGrille(taille.getHauteur(), taille.getLargeur());
+    }
+
+    @Override
+    public void copierDonnees(DPartie dPartie){
+        GLog.appel(this);
+        super.copierDonnees(dPartie);
+        this.grille = dPartie.getGrille();
+        this.couleur = dPartie.getCouleur();
+        this.taille = dPartie.getTaille();
     }
 
 }

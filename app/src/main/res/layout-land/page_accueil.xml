@@ -31,7 +31,7 @@
                 android:layout_column="1"
                 android:layout_margin="20dp"
                 android:layout_weight="1"
-                android:background="@color/colorAccent"
+                android:background="@drawable/button_background"
                 android:text="@string/boutonJouer" />
 
             <Button
@@ -41,7 +41,8 @@
                 android:layout_column="2"
                 android:layout_margin="20dp"
                 android:layout_weight="1"
-                android:background="@color/colorAccent"
+                android:enabled="false"
+                android:background="@drawable/button_background"
                 android:text="@string/boutonEnLigne" />
         </TableRow>
 
@@ -56,7 +57,7 @@
                 android:layout_column="1"
                 android:layout_margin="20dp"
                 android:layout_weight="1"
-                android:background="@color/colorAccent"
+                android:background="@drawable/button_background"
                 android:text="@string/boutonParametres" />
 
             <Button
@@ -66,7 +67,7 @@
                 android:layout_column="2"
                 android:layout_margin="20dp"
                 android:layout_weight="1"
-                android:background="@color/colorAccent"
+                android:background="@drawable/button_background"
                 android:text="@string/boutonConnexion" />
         </TableRow>
     </TableLayout>

@@ -1,11 +1,8 @@
 package ca.cours5b5.gabriellevesqueduval.vues.pages;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
@@ -13,12 +10,10 @@ import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 
+import javax.microedition.khronos.opengles.GL;
+
 import ca.cours5b5.gabriellevesqueduval.R;
 import ca.cours5b5.gabriellevesqueduval.commandes.CCoupIci;
-import ca.cours5b5.gabriellevesqueduval.commandes.CQuitterActivite;
-import ca.cours5b5.gabriellevesqueduval.donnees.DParametres;
-import ca.cours5b5.gabriellevesqueduval.donnees.EntrepotDeDonnees;
-import ca.cours5b5.gabriellevesqueduval.donnees.RetourDonnees;
 import ca.cours5b5.gabriellevesqueduval.donnees.partie.DCase;
 import ca.cours5b5.gabriellevesqueduval.donnees.partie.DColonne;
 import ca.cours5b5.gabriellevesqueduval.donnees.partie.DPartie;
@@ -69,7 +64,7 @@ public abstract class PPartie extends PageAvecModeles<DPartie, MPartie> {
         GLog.appel(this);
 
         donnees.setTaille(ETailleGrille.moyenne);
-        donnees.setCouleur(donnees.getCouleur());
+
 
 
         grille.creerGrille(donnees.getTaille().getHauteur(), donnees.getTaille().getLargeur());
@@ -105,10 +100,9 @@ public abstract class PPartie extends PageAvecModeles<DPartie, MPartie> {
     @Override
     public void creerCommandes(){
         GLog.appel(this);
-        int indice = 0;
-        for(VColonne colonne : grille.getListeColonnes()){
-            colonne.getEnTete().setcCoupIci(new CCoupIci(indice));
-            indice++;
+
+        for(int i=0; i<grille.getListeColonnes().size(); i++){
+            grille.getListeColonnes().get(i).getEnTete().setcCoupIci(new CCoupIci(i));
         }
     }
 
@@ -150,6 +144,14 @@ public abstract class PPartie extends PageAvecModeles<DPartie, MPartie> {
 
             }
         }
+    }
+
+    @Override
+    public void detruireAffichage(){
+        GLog.appel(this);
+        grille.removeAllViews();
+        grille.removeAllViewsInLayout();
+        grille.getListeColonnes().clear();
     }
 
 

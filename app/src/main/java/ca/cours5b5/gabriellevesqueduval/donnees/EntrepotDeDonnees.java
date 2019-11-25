@@ -6,9 +6,20 @@ import androidx.annotation.Nullable;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
 import ca.cours5b5.gabriellevesqueduval.global.GUsagerCourant;
@@ -16,6 +27,83 @@ import ca.cours5b5.gabriellevesqueduval.global.GUsagerCourant;
 public class EntrepotDeDonnees {
 
     private static FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+
+    private static Map<Class<? extends Donnees>, ListenerRegistration> mapObservateur = new HashMap<>();
+
+    private static <D extends Donnees> void memoriserObservateurServeur(Class<D> classeDonnees, ListenerRegistration listenerRegistration){
+        mapObservateur.put(classeDonnees, listenerRegistration);
+    }
+
+    public static <D extends Donnees> void effacerObservateur(final Class<D> classeDonnees){
+        if(mapObservateur.containsKey(classeDonnees)){
+            mapObservateur.get(classeDonnees).remove();
+        }
+    }
+
+    private static <D extends Donnees> void observerUnDocument(Class<D> classeDonnees, Observateur<D> observateurClient, DocumentChange documentChange){
+
+        switch (documentChange.getType()){
+            case ADDED:
+                observateurClient.notifierNouvellesDonnees(documentChange.getDocument().toObject(classeDonnees));
+                break;
+            case MODIFIED:
+                observateurClient.notifierModificationReseau(documentChange.getDocument().toObject(classeDonnees));
+                break;
+        }
+    }
+
+    private static <D extends Donnees> void observerDocumentsExistants(Class<D> classeDonnees, Observateur<D> observateurClient, QuerySnapshot queryDocumentSnapshots){
+        for(DocumentChange documentChange : queryDocumentSnapshots.getDocumentChanges()){
+            observerUnDocument(classeDonnees, observateurClient, documentChange);
+        }
+    }
+
+    private static <D extends Donnees> void observerDocumentsOuCreerNouveau(Class<D> classeDonnees, Observateur<D> observateurClient, QuerySnapshot queryDocumentSnapshots){
+
+        if(queryDocumentSnapshots.isEmpty()){
+            observateurClient.notifierNouvellesDonnees(creerDonnees(classeDonnees));
+        }else{
+            observerDocumentsExistants(classeDonnees, observateurClient, queryDocumentSnapshots);
+        }
+
+    }
+
+    private static <D extends Donnees> com.google.firebase.firestore.EventListener<QuerySnapshot> creerObservateurServeur(final Class<D> classeDonnees, final Observateur<D> observateurClient){
+        EventListener<QuerySnapshot> listener = new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if(queryDocumentSnapshots != null){
+                    observerDocumentsOuCreerNouveau(classeDonnees, observateurClient, queryDocumentSnapshots);
+                }
+            }
+        };
+        return listener;
+    }
+
+    private static <D extends Donnees> Query creerRequete(Class<D> classeDonnees){
+        CollectionReference collection = firestore.collection(nomCollection(classeDonnees));
+
+        return collection.whereEqualTo(FieldPath.documentId(), idDocument());
+    }
+
+    private static ListenerRegistration ajouterObservateurServeur(Query requete, com.google.firebase.firestore.EventListener<QuerySnapshot> observateurServeur){
+        ListenerRegistration listenerRegistration = requete.addSnapshotListener(observateurServeur);
+        return listenerRegistration;
+    }
+
+    public static <D extends Donnees> void observerDonnees(final Class<D> classeDonnees, final Observateur<D> observateurClient){
+        effacerObservateur(classeDonnees);
+
+        Query requete = creerRequete(classeDonnees);
+
+        EventListener observateurServeur = creerObservateurServeur(classeDonnees, observateurClient);
+
+        ListenerRegistration listenerRegistration = ajouterObservateurServeur(requete, observateurServeur);
+
+        memoriserObservateurServeur(classeDonnees, listenerRegistration);
+    }
+
+
 
 
     private static <D extends  Donnees> D creerDonnees(Class<D> classeDonnees) {
