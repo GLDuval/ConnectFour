@@ -92,6 +92,16 @@ public class AAccueil extends ActiviteAvecControles {
 
             }
         });
+
+        buttonEnLigne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GLog.appel(this);
+                Intent ouverturePartie = new Intent(AAccueil.this, APartieReseau.class);
+
+                AAccueil.this.startActivity(ouverturePartie);
+            }
+        });
     }
 
     private void effectuerConnexion(){

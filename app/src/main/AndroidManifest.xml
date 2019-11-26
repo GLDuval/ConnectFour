@@ -22,6 +22,9 @@
         <activity android:name=".activites.APartieLocale">
 
         </activity>
+        <activity android:name=".activites.APartieReseau">
+
+        </activity>
     </application>
 
 </manifest>
