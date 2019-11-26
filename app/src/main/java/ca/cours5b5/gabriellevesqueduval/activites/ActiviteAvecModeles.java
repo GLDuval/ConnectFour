@@ -46,27 +46,7 @@ public abstract class ActiviteAvecModeles<D extends Donnees, M extends Modele, P
         rafraichirAffichage();
     }
 
-    private void memoriserDonneesPuisInitialiserModelePage(D donneesObtenues){
-        GLog.appel(this);
 
-        donnees = donneesObtenues;
-        modele = creerModele(donnees, page);
-        initialiserPage();
-
-
-
-    }
-
-    private void obtenirDonneesPuisInitialiserModelePage(){
-        GLog.appel(this);
-        EntrepotDeDonnees.obtenirDonnees(getClassDonnees(), new RetourDonnees<D>() {
-            @Override
-            public void recevoirDonnees(D donnees) {
-                GLog.appel(this);
-                memoriserDonneesPuisInitialiserModelePage(donnees);
-            }
-        });
-    }
 
     private P recupererPage(){
         GLog.appel(this);

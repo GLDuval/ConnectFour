@@ -61,7 +61,7 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
 
     @Override
     public void detruireAffichage() {
-
+        GLog.appel(this);
     }
 
 
@@ -87,8 +87,6 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
             public void onClick(View view) {
                 GLog.appel(this);
                 cTailleGrilleGrande.executer();
-                checkBoxPetite.setChecked(false);
-                checkBoxMoyenne.setChecked(false);
             }
         });
         checkBoxMoyenne.setOnClickListener(new OnClickListener() {
@@ -96,8 +94,7 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
             public void onClick(View view) {
                 GLog.appel(this);
                 cTailleGrilleMoyenne.executer();
-                checkBoxPetite.setChecked(false);
-                checkBoxGrande.setChecked(false);
+
             }
         });
         checkBoxPetite.setOnClickListener(new OnClickListener() {
@@ -105,8 +102,7 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
             public void onClick(View view) {
                 GLog.appel(this);
                 cTailleGrillePetite.executer();
-                checkBoxMoyenne.setChecked(false);
-                checkBoxGrande.setChecked(false);
+
             }
         });
         switchReprendre.setOnClickListener(new OnClickListener() {
@@ -162,12 +158,18 @@ public class PParametres extends PageAvecModeles<DParametres, MParametres> {
         switch (donnees.getTaille()){
             case petite:
                 checkBoxPetite.setChecked(true);
+                checkBoxMoyenne.setChecked(false);
+                checkBoxGrande.setChecked(false);
                 break;
             case moyenne:
                 checkBoxMoyenne.setChecked(true);
+                checkBoxPetite.setChecked(false);
+                checkBoxGrande.setChecked(false);
                 break;
             case grande:
                 checkBoxGrande.setChecked(true);
+                checkBoxPetite.setChecked(false);
+                checkBoxMoyenne.setChecked(false);
                 break;
 
         }

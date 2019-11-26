@@ -25,19 +25,17 @@ public abstract class MPartie extends Modele<DPartie, PPartie> {
 
     public void jetonJoue(int indiceCol){
         GLog.appel(this);
+
         int indiceCaseColoree = changerCouleurCase(indiceCol);
 
         donnees.prochaineCouleur();
-
         super.notifierModificationLocale();
-
-
-        page.rafraichirAffichage(donnees);
         testerSiPartieGagnee(indiceCol, indiceCaseColoree);
 
     }
 
-    public int changerCouleurCase(int indiceCol){
+
+    private int changerCouleurCase(int indiceCol){
         GLog.appel(this);
 
         ArrayList<DCase> cases = donnees.getGrille().getColonnes().get(indiceCol).getCases();
@@ -63,7 +61,7 @@ public abstract class MPartie extends Modele<DPartie, PPartie> {
         siPlein = !cases.isEmpty() && cases.get(0).getCouleur() == ECouleur.gris;
 
 
-        return  siPlein;
+        return siPlein;
     }
 
     protected void initialiserCommandes(){

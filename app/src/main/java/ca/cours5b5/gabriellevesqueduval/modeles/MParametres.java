@@ -32,6 +32,7 @@ public class MParametres extends  Modele<DParametres, PParametres> {
 
         donnees.setTaille(taille);
         this.taille = taille;
+        super.notifierModificationLocale();
         page.rafraichirAffichage(donnees);
     }
 
@@ -39,6 +40,7 @@ public class MParametres extends  Modele<DParametres, PParametres> {
         GLog.appel(this);
         donnees.setContinuer(continuer);
         this.continuer = continuer;
+        super.notifierModificationLocale();
         page.rafraichirAffichage(donnees);
     }
 

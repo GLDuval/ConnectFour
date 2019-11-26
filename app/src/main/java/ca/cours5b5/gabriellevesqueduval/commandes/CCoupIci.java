@@ -28,6 +28,7 @@ public class CCoupIci extends Commande {
     @Override
     public boolean siExecutable(){
         GLog.appel(this);
+
         return modele.siColonnePleine(indiceCoup);
     }
 }
