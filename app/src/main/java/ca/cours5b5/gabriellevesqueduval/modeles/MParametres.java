@@ -26,6 +26,11 @@ public class MParametres extends  Modele<DParametres, PParametres> {
         CTailleGrille.initialiser(this);
     }
 
+    @Override
+    public void reagirChangement() {
+
+    }
+
     public void changementTaille(ETailleGrille taille){
 
         GLog.appel(this);

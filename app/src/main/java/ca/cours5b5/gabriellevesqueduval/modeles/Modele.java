@@ -30,4 +30,6 @@ public abstract class Modele <D extends Donnees, P extends PageAvecModeles> {
     }
 
     protected abstract void initialiserCommandes();
+
+    public abstract void reagirChangement();
 }

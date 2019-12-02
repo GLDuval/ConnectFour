@@ -17,6 +17,7 @@ import ca.cours5b5.gabriellevesqueduval.vues.pages.PPartie;
 
 public abstract class MPartie extends Modele<DPartie, PPartie> {
 
+
     public MPartie(DPartie donnees, PPartie page) {
 
         super(donnees, page);
@@ -26,11 +27,13 @@ public abstract class MPartie extends Modele<DPartie, PPartie> {
     public void jetonJoue(int indiceCol){
         GLog.appel(this);
 
-        int indiceCaseColoree = changerCouleurCase(indiceCol);
+        int indiceCaseJouee = changerCouleurCase(indiceCol);
+
+        donnees.setIndiceCaseJoue(indiceCaseJouee);
+        donnees.setIndiceColJoue(indiceCol);
 
         donnees.prochaineCouleur();
         super.notifierModificationLocale();
-        testerSiPartieGagnee(indiceCol, indiceCaseColoree);
 
     }
 
@@ -50,9 +53,8 @@ public abstract class MPartie extends Modele<DPartie, PPartie> {
         return 0;
     }
 
-    public boolean siColonnePleine(int indiceCol){
+    public boolean siExecutable(int indiceCol){
         GLog.appel(this);
-        GLog.valeurs(indiceCol);
 
         boolean siPlein = false;
 
@@ -64,10 +66,17 @@ public abstract class MPartie extends Modele<DPartie, PPartie> {
         return siPlein;
     }
 
+    @Override
     protected void initialiserCommandes(){
         GLog.appel(this);
         CCoupIci.initialiser(this);
         CMessagePuisCommande.initialiser(page);
+    }
+
+    @Override
+    public void reagirChangement(){
+        GLog.appel(this);
+        testerSiPartieGagnee();
     }
 
     private void reagirPartieGagnee(){
@@ -90,6 +99,7 @@ public abstract class MPartie extends Modele<DPartie, PPartie> {
         return idMessage;
     }
 
+
     private boolean siPartieGagnee(int indiceCol, int indiceCase){
         GLog.appel(this);
 
@@ -103,10 +113,9 @@ public abstract class MPartie extends Modele<DPartie, PPartie> {
 
     }
 
-    private void testerSiPartieGagnee(int indiceCol, int indiceCase){
+    public void testerSiPartieGagnee(){
         GLog.appel(this);
-
-        if(siPartieGagnee(indiceCol, indiceCase)){
+        if(siPartieGagnee(donnees.getIndiceColJoue(), donnees.getIndiceCaseJoue())){
             reagirPartieGagnee();
         }
     }

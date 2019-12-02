@@ -2,15 +2,15 @@ package ca.cours5b5.gabriellevesqueduval.activites;
 
 import ca.cours5b5.gabriellevesqueduval.R;
 import ca.cours5b5.gabriellevesqueduval.commandes.CQuitterActivite;
-import ca.cours5b5.gabriellevesqueduval.donnees.partie.DPartieLocale;
 import ca.cours5b5.gabriellevesqueduval.donnees.partie.DPartieReseau;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
-import ca.cours5b5.gabriellevesqueduval.modeles.MPartieLocale;
 import ca.cours5b5.gabriellevesqueduval.modeles.MPartieReseau;
-import ca.cours5b5.gabriellevesqueduval.vues.pages.PPartieLocale;
 import ca.cours5b5.gabriellevesqueduval.vues.pages.PPartieReseau;
 
 public class APartieReseau extends ActiviteAvecModeles <DPartieReseau, MPartieReseau, PPartieReseau> {
+
+    MPartieReseau modele;
+
     @Override
     protected int getLayoutId() {
         GLog.appel(this);
@@ -33,7 +33,9 @@ public class APartieReseau extends ActiviteAvecModeles <DPartieReseau, MPartieRe
     protected MPartieReseau creerModele(DPartieReseau donnees, PPartieReseau page) {
         GLog.appel(this);
         CQuitterActivite.initialiser(this);
-        return new MPartieReseau(donnees, page);
+        modele = new MPartieReseau(donnees, page);
+        return modele;
     }
+
 
 }

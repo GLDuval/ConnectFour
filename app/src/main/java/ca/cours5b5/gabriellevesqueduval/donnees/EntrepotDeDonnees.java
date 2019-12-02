@@ -16,6 +16,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.HashMap;
 import java.util.Map;
 
+import ca.cours5b5.gabriellevesqueduval.global.GConstantes;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
 import ca.cours5b5.gabriellevesqueduval.global.GUsagerCourant;
 
@@ -84,7 +85,7 @@ public class EntrepotDeDonnees {
         GLog.appel(EntrepotDeDonnees.class);
         CollectionReference collection = firestore.collection(nomCollection(classeDonnees));
 
-        return collection.whereEqualTo(FieldPath.documentId(), idDocument());
+        return collection.whereEqualTo(FieldPath.documentId(), idDocument(classeDonnees));
     }
 
     private static ListenerRegistration ajouterObservateurServeur(Query requete, com.google.firebase.firestore.EventListener<QuerySnapshot> observateurServeur){
@@ -95,6 +96,7 @@ public class EntrepotDeDonnees {
 
     public static <D extends Donnees> void observerDonnees(final Class<D> classeDonnees, final Observateur<D> observateurClient){
         GLog.appel(EntrepotDeDonnees.class);
+
         effacerObservateur(classeDonnees);
 
         Query requete = creerRequete(classeDonnees);
@@ -132,14 +134,20 @@ public class EntrepotDeDonnees {
         return classeDonnees.getSimpleName();
     }
 
-    private static String idDocument(){
+    private static String idDocument(Class<? extends Donnees> classeDonnees){
         GLog.appel(EntrepotDeDonnees.class);
-        return GUsagerCourant.getId();
+        String id;
+        if(nomCollection(classeDonnees).equals("DPartieReseau")){
+            id = GConstantes.USAGER_DEFAUT;
+        }else{
+            id = GUsagerCourant.getId();
+        }
+        return id;
     }
 
     private static DocumentReference referenceDocument(Class<? extends Donnees> classeDonnees){
         GLog.appel(EntrepotDeDonnees.class);
-        return firestore.collection(nomCollection(classeDonnees)).document(idDocument());
+        return firestore.collection(nomCollection(classeDonnees)).document(idDocument(classeDonnees));
     }
 
     public static <D extends Donnees> void sauvegarderDonneesSurServeur(D donnees){

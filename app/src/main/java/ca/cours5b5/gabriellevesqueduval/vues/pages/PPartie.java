@@ -65,8 +65,6 @@ public abstract class PPartie extends PageAvecModeles<DPartie, MPartie> {
 
         donnees.setTaille(ETailleGrille.moyenne);
 
-
-
         grille.creerGrille(donnees.getTaille().getHauteur(), donnees.getTaille().getLargeur());
     }
 
@@ -112,6 +110,8 @@ public abstract class PPartie extends PageAvecModeles<DPartie, MPartie> {
         for(VColonne colonne : grille.getListeColonnes()){
             if(!colonne.getEnTete().getcCoupIci().siExecutable()){
                colonne.getEnTete().setEnabled(false);
+            }else{
+                colonne.getEnTete().setEnabled(true);
             }
         }
     }

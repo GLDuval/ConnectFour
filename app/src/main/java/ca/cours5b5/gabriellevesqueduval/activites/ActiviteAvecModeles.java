@@ -81,6 +81,7 @@ public abstract class ActiviteAvecModeles<D extends Donnees, M extends Modele, P
     private void reagirDonneesDuServeur(D donneesDuServeur){
         GLog.appel(this);
         donnees.copierDonnees(donneesDuServeur);
+        modele.reagirChangement();
         rafraichirAffichage();
     }
 
@@ -106,5 +107,6 @@ public abstract class ActiviteAvecModeles<D extends Donnees, M extends Modele, P
     protected abstract Class<D> getClassDonnees();
 
     protected abstract M creerModele(D donnees, P page);
+
 
 }

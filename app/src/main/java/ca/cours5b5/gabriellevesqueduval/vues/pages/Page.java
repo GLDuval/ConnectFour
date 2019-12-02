@@ -40,7 +40,7 @@ public abstract class Page extends ConstraintLayout {
 
     public void afficherMessagePuisExecuterCommande(int message, final Commande commande) {
         GLog.appel(this);
-        Snackbar snackbar = Snackbar.make(this.getRootView(),getResources().getString(message), Snackbar.LENGTH_SHORT);
+        Snackbar snackbar = Snackbar.make(this.getRootView(),getResources().getString(message), Snackbar.LENGTH_LONG);
         snackbar.addCallback(new Snackbar.Callback(){
             @Override
             public void onDismissed(Snackbar snackbar1, int event){

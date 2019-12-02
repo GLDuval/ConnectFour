@@ -10,6 +10,8 @@ public abstract class DPartie extends Donnees<DPartie> {
     private DGrille grille;
     private ETailleGrille taille;
     private ECouleur couleur = ECouleur.bleu;
+    private int indiceCaseJoue;
+    private int indiceColJoue;
 
     public DPartie(){
         GLog.appel(this);
@@ -52,6 +54,26 @@ public abstract class DPartie extends Donnees<DPartie> {
         grille.initialiserGrille(taille.getHauteur(), taille.getLargeur());
     }
 
+    public int getIndiceCaseJoue() {
+        GLog.appel(this);
+        return indiceCaseJoue;
+    }
+
+    public int getIndiceColJoue() {
+        GLog.appel(this);
+        return indiceColJoue;
+    }
+
+    public void setIndiceCaseJoue(int indiceCaseJoue) {
+        GLog.appel(this);
+        this.indiceCaseJoue = indiceCaseJoue;
+    }
+
+    public void setIndiceColJoue(int indiceColJoue) {
+        GLog.appel(this);
+        this.indiceColJoue = indiceColJoue;
+    }
+
     @Override
     public void copierDonnees(DPartie dPartie){
         GLog.appel(this);
@@ -59,6 +81,8 @@ public abstract class DPartie extends Donnees<DPartie> {
         this.grille = dPartie.getGrille();
         this.couleur = dPartie.getCouleur();
         this.taille = dPartie.getTaille();
+        this.indiceCaseJoue = dPartie.getIndiceCaseJoue();
+        this.indiceColJoue = dPartie.getIndiceColJoue();
     }
 
 }
