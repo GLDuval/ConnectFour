@@ -38,7 +38,6 @@ public class DParametres extends Donnees<DParametres>{
     public void copierDonnees(DParametres dParametres){
         GLog.appel(this);
         super.copierDonnees(dParametres);
-
         this.taille = dParametres.getTaille();
         this.continuer = dParametres.isContinuer();
     }

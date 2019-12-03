@@ -91,6 +91,7 @@ public class EntrepotDeDonnees {
     private static ListenerRegistration ajouterObservateurServeur(Query requete, com.google.firebase.firestore.EventListener<QuerySnapshot> observateurServeur){
         GLog.appel(EntrepotDeDonnees.class);
         ListenerRegistration listenerRegistration = requete.addSnapshotListener(observateurServeur);
+
         return listenerRegistration;
     }
 
@@ -113,6 +114,7 @@ public class EntrepotDeDonnees {
 
     private static <D extends  Donnees> D creerDonnees(Class<D> classeDonnees) {
         GLog.appel(EntrepotDeDonnees.class);
+
         D donnees = null;
         try {
             donnees = classeDonnees.newInstance();
@@ -136,6 +138,7 @@ public class EntrepotDeDonnees {
 
     private static String idDocument(Class<? extends Donnees> classeDonnees){
         GLog.appel(EntrepotDeDonnees.class);
+
         String id;
         if(nomCollection(classeDonnees).equals("DPartieReseau")){
             id = GConstantes.USAGER_DEFAUT;

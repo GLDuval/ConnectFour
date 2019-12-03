@@ -8,12 +8,14 @@ public abstract class Observateur<D extends Donnees> {
 
     public void notifierNouvellesDonnees(D donnees){
         GLog.appel(this);
+
         versionCourante = donnees.getVersionCourante();
         nouveau(donnees);
     }
 
     public void notifierModificationReseau(D donnees){
         GLog.appel(this);
+
         if(versionCourante < donnees.getVersionCourante()){
             versionCourante = donnees.getVersionCourante();
             donneesDuServeur(donnees);

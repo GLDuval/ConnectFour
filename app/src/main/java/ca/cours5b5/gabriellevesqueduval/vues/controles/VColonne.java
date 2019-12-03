@@ -87,6 +87,7 @@ public class VColonne extends LinearLayout {
     }
 
     public int getIndice() {
+        GLog.appel(this);
         return indice;
     }
 }

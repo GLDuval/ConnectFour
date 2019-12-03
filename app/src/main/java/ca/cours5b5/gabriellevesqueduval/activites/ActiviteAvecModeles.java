@@ -5,7 +5,6 @@ import android.os.Bundle;
 import ca.cours5b5.gabriellevesqueduval.donnees.Donnees;
 import ca.cours5b5.gabriellevesqueduval.donnees.EntrepotDeDonnees;
 import ca.cours5b5.gabriellevesqueduval.donnees.Observateur;
-import ca.cours5b5.gabriellevesqueduval.donnees.RetourDonnees;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
 import ca.cours5b5.gabriellevesqueduval.modeles.Modele;
 import ca.cours5b5.gabriellevesqueduval.vues.pages.PageAvecModeles;
@@ -90,11 +89,13 @@ public abstract class ActiviteAvecModeles<D extends Donnees, M extends Modele, P
         EntrepotDeDonnees.observerDonnees(getClassDonnees(), new Observateur<D>() {
             @Override
             protected void nouveau(D donnees) {
+                GLog.appel(this);
                 memoriserDonneesPuisGererModelePage(donnees);
             }
 
             @Override
             protected void donneesDuServeur(D donnees) {
+                GLog.appel(this);
                 reagirDonneesDuServeur(donnees);
             }
         });

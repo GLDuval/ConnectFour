@@ -36,10 +36,12 @@ public class VEntete extends AppCompatButton {
     }
 
     public CCoupIci getcCoupIci(){
+        GLog.appel(this);
         return cCoupIci;
     }
 
     public void setcCoupIci(CCoupIci cCoupIci){
+        GLog.appel(this);
         this.cCoupIci = cCoupIci;
     }
 

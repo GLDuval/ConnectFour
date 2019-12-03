@@ -20,12 +20,14 @@ public abstract class Modele <D extends Donnees, P extends PageAvecModeles> {
 
     protected void notifierModificationLocale(){
         GLog.appel(this);
+
         donnees.notifierModificationLocale();
         EntrepotDeDonnees.sauvegarderDonneesSurServeur(donnees);
     }
 
     public void detruire(){
         GLog.appel(this);
+
         page.detruireAffichage();
     }
 

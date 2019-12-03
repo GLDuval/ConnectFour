@@ -7,6 +7,7 @@ public class DPartieReseau extends DPartie {
     private String idProchain;
 
     public String getIdProchain() {
+        GLog.appel(this);
         return idProchain;
     }
 

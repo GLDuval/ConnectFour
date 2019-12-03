@@ -4,7 +4,6 @@ import ca.cours5b5.gabriellevesqueduval.donnees.partie.DPartie;
 import ca.cours5b5.gabriellevesqueduval.donnees.partie.DPartieReseau;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
 import ca.cours5b5.gabriellevesqueduval.global.GUsagerCourant;
-import ca.cours5b5.gabriellevesqueduval.vues.pages.PPartie;
 import ca.cours5b5.gabriellevesqueduval.vues.pages.PPartieReseau;
 
 public class MPartieReseau extends MPartie {
@@ -19,7 +18,9 @@ public class MPartieReseau extends MPartie {
 
     @Override
     public boolean siExecutable(int indiceCol){
+
         GLog.appel(this);
+
         boolean executable = false;
         if(dPartieReseau.getIdProchain()!=null){
             executable = !dPartieReseau.getIdProchain().equals(GUsagerCourant.getId());
@@ -32,7 +33,9 @@ public class MPartieReseau extends MPartie {
 
     @Override
     public void jetonJoue(int indiceCol){
+
         GLog.appel(this);
+
         dPartieReseau.setIdProchain(GUsagerCourant.getId());
         super.jetonJoue(indiceCol);
     }

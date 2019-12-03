@@ -10,17 +10,10 @@ import androidx.annotation.NonNull;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import ca.cours5b5.gabriellevesqueduval.R;
-import ca.cours5b5.gabriellevesqueduval.donnees.DParametres;
-import ca.cours5b5.gabriellevesqueduval.donnees.EntrepotDeDonnees;
-import ca.cours5b5.gabriellevesqueduval.donnees.partie.DPartie;
-import ca.cours5b5.gabriellevesqueduval.donnees.partie.DPartieLocale;
 import ca.cours5b5.gabriellevesqueduval.global.GLog;
 import ca.cours5b5.gabriellevesqueduval.global.GUsagerCourant;
 

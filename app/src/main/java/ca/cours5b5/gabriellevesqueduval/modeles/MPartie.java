@@ -105,7 +105,7 @@ public abstract class MPartie extends Modele<DPartie, PPartie> {
 
         boolean gagnee = false;
 
-        if(suiteVerticale(indiceCol) || suiteHorizontale(indiceCase) || suiteDiagonaleDroite(indiceCol, indiceCase) || suiteDiagonaleGauche(indiceCol, indiceCase)){
+        if(suiteVerticale(indiceCol) || suiteHorizontale(indiceCase) || suiteDiagonaleNordEst(indiceCol, indiceCase) || suiteDiagonaleNordOuest(indiceCol, indiceCase)){
             gagnee =true;
         }
 
@@ -162,7 +162,7 @@ public abstract class MPartie extends Modele<DPartie, PPartie> {
     }
 
 
-    private boolean suiteDiagonaleGauche(int indiceCol, int indiceCase){
+    private boolean suiteDiagonaleNordOuest(int indiceCol, int indiceCase){
         GLog.appel(this);
 
         ECouleur couleur = donnees.getCouleur() == ECouleur.bleu ? ECouleur.rouge : ECouleur.bleu;
@@ -193,7 +193,7 @@ public abstract class MPartie extends Modele<DPartie, PPartie> {
         return compteur == GConstantes.SUITE_GAGNANTE;
     }
 
-    private boolean suiteDiagonaleDroite(int indiceCol, int indiceCase){
+    private boolean suiteDiagonaleNordEst(int indiceCol, int indiceCase){
         GLog.appel(this);
 
         ECouleur couleur = donnees.getCouleur() == ECouleur.bleu ? ECouleur.rouge : ECouleur.bleu;

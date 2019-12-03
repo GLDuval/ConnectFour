@@ -21,6 +21,7 @@ public class MParametres extends  Modele<DParametres, PParametres> {
     @Override
     protected void initialiserCommandes() {
         GLog.appel(this);
+
         taille = donnees.getTaille();
         CContinuerPartie.initialiser(this);
         CTailleGrille.initialiser(this);
@@ -28,7 +29,7 @@ public class MParametres extends  Modele<DParametres, PParametres> {
 
     @Override
     public void reagirChangement() {
-
+        GLog.appel(this);
     }
 
     public void changementTaille(ETailleGrille taille){
@@ -43,6 +44,7 @@ public class MParametres extends  Modele<DParametres, PParametres> {
 
     public void changementContinuer(boolean continuer){
         GLog.appel(this);
+
         donnees.setContinuer(continuer);
         this.continuer = continuer;
         super.notifierModificationLocale();
